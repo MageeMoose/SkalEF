@@ -4,93 +4,84 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1> @Html.DisplayFor(model => model.Room)</h1>
 
 <div>
-    <h4>Client</h4>
+    <h4>@Html.DisplayFor(model => model.FirNamn)</h4>
+    <h5>@Html.DisplayFor(model => model.LasName)</h5>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirNamn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirNamn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LasName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LasName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lang)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lang)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Section)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Section)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Food)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Food)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Dossnr)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Dossnr)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Socks)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lang)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Socks)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lang)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Slippers)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Section)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Slippers)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Section)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Underware)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Food)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Underware)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Food)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mobil)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mobil)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Headphones)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Headphones)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Trouser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Trouser)
-        </dd>
+
+        <div class="col-md-6">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Socks)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Socks)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Slippers)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Slippers)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Underware)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Underware)
+            </dd>
+        </div>
+        <div class="col-md-6">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mobil)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mobil)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Headphones)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Headphones)
+            </dd>
+            <dt class="col-sm-2 ">
+                @Html.DisplayNameFor(model => model.Trouser)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Trouser)
+            </dd>
+        </div>
+
+
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ClientID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.ClientID">Ändra</a> |
+    <a asp-action="Index">Tillbaka</a>
 </div>
