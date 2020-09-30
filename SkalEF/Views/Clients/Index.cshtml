@@ -25,33 +25,12 @@
                 @Html.DisplayNameFor(model => model.Lang)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Section)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Dossnr)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Socks)
+                @Html.DisplayNameFor(model => model.Section)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slippers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Underware)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mobil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Headphones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trouser)
-            </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -70,36 +49,16 @@
                 @Html.DisplayFor(modelItem => item.Lang)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Section)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Food)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Dossnr)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Socks)
+                @Html.DisplayFor(modelItem => item.Section)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Slippers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Underware)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Headphones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trouser)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClientID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClientID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ClientID">Ändra</a> |
+                <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
             </td>
         </tr>
 }
