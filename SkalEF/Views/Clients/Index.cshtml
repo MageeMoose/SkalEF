@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Bild
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Room)
             </th>
             <th>
@@ -35,7 +38,11 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    
         <tr>
+            <td>
+                <img src="~/img/terry-crews-person-of-year-2017-time-magazine-2.jpg" style="width:30px;" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Room)
             </td>
