@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace SkalEF.Controllers
     public class ClientsController : Controller
     {
         private readonly ClientContex _context;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public ClientsController(ClientContex context)
+        public ClientsController(ClientContex context, IWebHostEnvironment hostEnvironment )
         {
             _context = context;
+            this.hostEnvironment = hostEnvironment;
         }
 
         // GET: Clients
@@ -53,10 +56,13 @@ namespace SkalEF.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser")] Client client)
+        public async Task<IActionResult> Create([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client)
         {
             if (ModelState.IsValid)
             {
+               // string wwwRootPath =
+
+
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -55,6 +56,13 @@ namespace SkalEF.Models
         public bool Headphones { get; set; }
         [DisplayName("Byxor")]
         public bool Trouser { get; set; }
+        [Column(TypeName = "nvarchar(250)")]
+        [DisplayName("Foto")]
+        public string ImgName { get; set; }
+        [NotMapped]
+        [DisplayName("Ladda upp foto")]
+        public IFormFile ImageFile { get; set; }
+        
 
 
 
