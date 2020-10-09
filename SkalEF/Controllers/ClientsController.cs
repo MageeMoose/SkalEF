@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using SkalEF.Models;
 
@@ -13,12 +15,12 @@ namespace SkalEF.Controllers
     public class ClientsController : Controller
     {
         private readonly ClientContex _context;
-        private readonly IWebHostEnvironment hostEnvironment;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public ClientsController(ClientContex context, IWebHostEnvironment hostEnvironment )
         {
             _context = context;
-            this.hostEnvironment = hostEnvironment;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Clients
@@ -46,25 +48,75 @@ namespace SkalEF.Controllers
         }
 
         // GET: Clients/Create
-        public IActionResult Create()
+        public IActionResult AddOrEdit(int id)
         {
-            return View();
+            if (id == 0)
+                return View(new Client());
+            else
+            return View(_context.Clients.Find(id));
         }
 
         // POST: Clients/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client)
+        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client)
         {
             if (ModelState.IsValid)
             {
-               // string wwwRootPath =
+                string defaultImage = "terry.jpg";
+                //Save profileimage to wwwRoot/img
+                
+                    
+                
+                //Insert
+                if (client.ClientID!=0)
+                {
+                    if(client.ImageFile == null)
+                    {
+                        client.ImgName = defaultImage;
+                    }
+                    else
+                    {
+                        string wwwRootPath = _hostEnvironment.WebRootPath;
+                        string fileName = Path.GetFileNameWithoutExtension(client.ImageFile.FileName);
+                        string extension = Path.GetExtension(client.ImageFile.FileName);
+                        client.ImgName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                        string path = Path.Combine(wwwRootPath + "/img/", fileName);
+                        using (var fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await client.ImageFile.CopyToAsync(fileStream);
+                        }
+                    }
+                    
+                    _context.Update(client);
+                }
+                else
+                {
+                    if(client.ImageFile==null)
+                    {
+                        
+                    }
+                    else
+                    {
+                        string wwwRootPath = _hostEnvironment.WebRootPath;
+                        string fileName = Path.GetFileNameWithoutExtension(client.ImageFile.FileName);
+                        string extension = Path.GetExtension(client.ImageFile.FileName);
+                        client.ImgName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                        string path = Path.Combine(wwwRootPath + "/img/", fileName);
+                        using (var fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await client.ImageFile.CopyToAsync(fileStream);
+                        }
+                    }
+                   
+                    _context.Add(client);
+                    
 
+                }
 
-                _context.Add(client);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(client);

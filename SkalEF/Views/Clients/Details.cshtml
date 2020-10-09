@@ -9,7 +9,7 @@
 <div>
     <div class="container">
         <div class="card" style="width:200px;">
-            <img class="card-img-top" src="~/img/terry-crews-person-of-year-2017-time-magazine-2.jpg" style="width:100%;" />
+            <img class="card-img-top" src="@("~/img/"+Model.ImgName)" asp-append-version="true" style="width:100%;" />
             <div class="card-body">
                 <h1>@Html.DisplayFor(model => model.Room)</h1>
                     @Html.DisplayNameFor(model => model.LasName)

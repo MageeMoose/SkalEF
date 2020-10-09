@@ -4,14 +4,15 @@
     ViewData["Title"] = "Lägg till";
 }
 
-<h1>Lägg till</h1>
+
 
 <h4>Förvarstagen</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-action="AddOrEdit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClientID" />
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label> <br />
                 <input asp-for="ImageFile"  accept="image/*" />
