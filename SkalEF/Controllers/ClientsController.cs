@@ -65,10 +65,7 @@ namespace SkalEF.Controllers
             if (ModelState.IsValid)
             {
                 string defaultImage = "terry.jpg";
-                //Save profileimage to wwwRoot/img
-                
-                    
-                
+     
                 //Insert
                 if (client.ClientID!=0)
                 {
@@ -78,6 +75,7 @@ namespace SkalEF.Controllers
                     }
                     else
                     {
+                        //Save profileimage to wwwRoot/img
                         string wwwRootPath = _hostEnvironment.WebRootPath;
                         string fileName = Path.GetFileNameWithoutExtension(client.ImageFile.FileName);
                         string extension = Path.GetExtension(client.ImageFile.FileName);
@@ -122,56 +120,8 @@ namespace SkalEF.Controllers
             return View(client);
         }
 
-        // GET: Clients/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var client = await _context.Clients.FindAsync(id);
-            if (client == null)
-            {
-                return NotFound();
-            }
-            return View(client);
-        }
-
-        // POST: Clients/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser")] Client client)
-        {
-            if (id != client.ClientID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(client);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClientExists(client.ClientID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(client);
-        }
+    
+      
 
         // GET: Clients/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -205,6 +155,11 @@ namespace SkalEF.Controllers
         private bool ClientExists(int id)
         {
             return _context.Clients.Any(e => e.ClientID == id);
+        }
+
+        public async Task<IActionResult> HeadCount()
+        {
+            return View(await _context.Clients.ToListAsync());
         }
     }
 }

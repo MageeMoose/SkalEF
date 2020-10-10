@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<SkalEF.Models.Client>
 
+
 @{
     ViewData["Title"] = "Index";
     var sort = Model.OrderBy(c => c.Room);
+    var secOne = Model.Where(c => c.Room > 21050);
+    var secTwo = Model.Where(c => c.Room < 21050);
 }
 
 <h1>Förvarstagna</h1>
@@ -10,7 +13,8 @@
 <p>
     <a asp-action="AddOrEdit">Lägg till</a>
 </p>
-<table class="table">
+<table class="table border-bottom">
+    <h3 class="lead">Avdelning 1</h3>
     <thead>
         <tr>
             <th>
@@ -34,41 +38,111 @@
             <th>
                 @Html.DisplayNameFor(model => model.Section)
             </th>
-           
+
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in sort) {
-    
+        @foreach (var item in secOne.OrderBy(v => v.Room))
+        {
+
+
+            <tr>
+                <td>
+                    <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:30px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirNamn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LasName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dossnr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID">Ändra</a> |
+                    <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<table class="table">
+    <h3 class="lead">Avdelning 2 </h3>
+    <thead>
         <tr>
-            <td>
-                <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:30px;" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirNamn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LasName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dossnr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Section)
-            </td>
-            
-            <td>
-                <a asp-action="AddOrEdit" asp-route-id="@item.ClientID">Ändra</a> |
-                <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
-            </td>
+            <th>
+                Bild
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirNamn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LasName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dossnr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+
         </tr>
-}
+    </thead>
+
+    <tbody>
+        @foreach (var item in secTwo.OrderBy(v => v.Room))
+        {
+
+
+            <tr>
+                <td>
+                    <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:30px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirNamn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LasName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dossnr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID">Ändra</a> |
+                    <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

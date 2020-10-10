@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SkalEF.Models.Client>
+
+@{
+    ViewData["Title"] = "HeadCount";
+  
+}
+
+<h1></h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="card col-3" style="width:50px;">
+                <img class="card-img-top" src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:100%;" />
+                <div class="card-body">
+                    <h1>@Html.DisplayFor(modelItem => item.Room)</h1>
+
+                    @Html.DisplayNameFor(item => item.LasName)
+                    <h4>@Html.DisplayFor(modelItem => item.LasName)</h4>
+                    @Html.DisplayNameFor(item => item.FirNamn)
+                    <h5>@Html.DisplayFor(modelItem => item.FirNamn)</h5>
+                </div>
+            </div>
+
+        }
+
+    </div>
+  
+
+</div>
+
+
+       
