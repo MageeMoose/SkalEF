@@ -16,7 +16,8 @@ namespace SkalEF.Models
         [Required]
 
         [DisplayName("Rum")]
-        public int Room { get; set; }
+        [Column(TypeName = "nvarchar(8)")]
+        public string Room { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(250)")]
@@ -63,7 +64,7 @@ namespace SkalEF.Models
         [DisplayName("Ladda upp foto")]
         public IFormFile ImageFile { get; set; }
         
-
+        
 
 
 

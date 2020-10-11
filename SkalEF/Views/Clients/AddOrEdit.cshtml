@@ -1,4 +1,6 @@
 ﻿@model SkalEF.Models.Client
+@model SkalEF.Models.RoomsModel
+@using SkalEF.Enums
 
 @{
     ViewData["Title"] = "Lägg till";
@@ -20,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Room" class="control-label"></label>
-                <input asp-for="Room" class="form-control" />
+                <select asp-for="Room" asp-items="Html.GetEnumSelectList<>" class="form-control" />
                 <span asp-validation-for="Room" class="text-danger"></span>
             </div>
             <div class="form-row">

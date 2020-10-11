@@ -4,8 +4,8 @@
 @{
     ViewData["Title"] = "Index";
     var sort = Model.OrderBy(c => c.Room);
-    var secOne = Model.Where(c => c.Room > 21050);
-    var secTwo = Model.Where(c => c.Room < 21050);
+    var secOne = Model.Where(c => c.Section == "Avdelning 1");
+    var secTwo = Model.Where(c => c.Section == "Avdelning 2");
 }
 
 <h1>Förvarstagna</h1>

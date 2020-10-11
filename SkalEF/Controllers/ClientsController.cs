@@ -69,11 +69,11 @@ namespace SkalEF.Controllers
                 //Insert
                 if (client.ClientID!=0)
                 {
-                    if(client.ImageFile == null)
+                    if(client.ImageFile == null && client.ImgName == null)
                     {
                         client.ImgName = defaultImage;
                     }
-                    else
+                    else if (client.ImgName != null)
                     {
                         //Save profileimage to wwwRoot/img
                         string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -93,7 +93,7 @@ namespace SkalEF.Controllers
                 {
                     if(client.ImageFile==null)
                     {
-                        
+                        client.ImgName = defaultImage;
                     }
                     else
                     {
@@ -146,7 +146,15 @@ namespace SkalEF.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
+
             var client = await _context.Clients.FindAsync(id);
+            
+            // Delete image from folder
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", client.ImgName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+            // Delete the client info
             _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
