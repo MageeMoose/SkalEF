@@ -1,9 +1,13 @@
 ﻿@model SkalEF.Models.Client
 @model SkalEF.Models.RoomsModel
+@using SkalEF.Models
 @using SkalEF.Enums
+
+
 
 @{
     ViewData["Title"] = "Lägg till";
+  
 }
 
 
@@ -17,13 +21,8 @@
             <input type="hidden" asp-for="ClientID" />
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label> <br />
-                <input asp-for="ImageFile"  accept="image/*" />
+                <input asp-for="ImageFile" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Room" class="control-label"></label>
-                <select asp-for="Room" asp-items="Html.GetEnumSelectList<>" class="form-control" />
-                <span asp-validation-for="Room" class="text-danger"></span>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -37,26 +36,35 @@
                     <span asp-validation-for="LasName" class="text-danger"></span>
                 </div>
             </div>
+            <div class="form-group col-4">
+                <label asp-for="Dossnr" class="control-label"></label>
+                <input asp-for="Dossnr" class="form-control" />
+                <span asp-validation-for="Dossnr" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Lang" class="control-label"></label>
                 <input asp-for="Lang" class="form-control" />
                 <span asp-validation-for="Lang" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Section" class="control-label"></label>
-                <input asp-for="Section" class="form-control" />
-                <span asp-validation-for="Section" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+
+            <div class="form-group ">
                 <label asp-for="Food" class="control-label"></label>
                 <input asp-for="Food" class="form-control" />
                 <span asp-validation-for="Food" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Dossnr" class="control-label"></label>
-                <input asp-for="Dossnr" class="form-control" />
-                <span asp-validation-for="Dossnr" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Section" class="control-label"></label>
+                    <input asp-for="Section" class="form-control" />
+                    <span asp-validation-for="Section" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="Room" class="control-label"></label>
+                    <input asp-for="Room" />
+                    <span asp-validation-for="Room" class="text-danger"></span>
+                </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group form-check col-md-6">
                     <label class="form-check-label">

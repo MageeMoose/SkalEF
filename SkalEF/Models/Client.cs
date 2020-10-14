@@ -16,8 +16,8 @@ namespace SkalEF.Models
         [Required]
 
         [DisplayName("Rum")]
-        [Column(TypeName = "nvarchar(8)")]
-        public string Room { get; set; }
+        //[Column(TypeName = "nvarchar(8)")]
+        public int Room { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(250)")]
