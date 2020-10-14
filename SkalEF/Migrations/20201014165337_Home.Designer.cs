@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkalEF.Models;
 
 namespace SkalEF.Migrations
 {
     [DbContext(typeof(ClientContex))]
-    partial class ClientContexModelSnapshot : ModelSnapshot
+    [Migration("20201014165337_Home")]
+    partial class Home
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,21 +75,6 @@ namespace SkalEF.Migrations
                     b.HasKey("ClientID");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("SkalEF.Models.RoomsNumbers", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Rooms")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Rooms");
                 });
 #pragma warning restore 612, 618
         }

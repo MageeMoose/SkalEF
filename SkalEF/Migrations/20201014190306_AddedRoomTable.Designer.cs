@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkalEF.Models;
 
 namespace SkalEF.Migrations
 {
     [DbContext(typeof(ClientContex))]
-    partial class ClientContexModelSnapshot : ModelSnapshot
+    [Migration("20201014190306_AddedRoomTable")]
+    partial class AddedRoomTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

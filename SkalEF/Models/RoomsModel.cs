@@ -1,7 +1,9 @@
 ﻿using SkalEF.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +16,8 @@ namespace SkalEF.Models
 
     public enum Rooms
     {
-        [Display(Name = "2073:1")]
-        SevenThreeOne,
+        [Description("2073:1")]
+        Avd2_20731,
 
         [Display(Name = "2073:2")]
         SevenThreeTwo,

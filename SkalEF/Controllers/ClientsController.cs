@@ -60,7 +60,7 @@ namespace SkalEF.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client)
+        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client, RoomsNumbers roomsNumbers)
         {
             if (ModelState.IsValid)
             {
