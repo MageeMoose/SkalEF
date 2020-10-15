@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace SkalEF.Models
 {
     public class Client
@@ -16,8 +17,8 @@ namespace SkalEF.Models
         [Required]
 
         [DisplayName("Rum")]
-        //[Column(TypeName = "nvarchar(8)")]
-        public int Room { get; set; }
+        [Column(TypeName = "nvarchar(8)")]
+        public string Room { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(250)")]
@@ -43,8 +44,9 @@ namespace SkalEF.Models
         public string Food { get; set; }
 
         [Required]
+        [Column(TypeName = "nvarchar(10)")]
         [DisplayName("Doss Nr")]
-        public int Dossnr { get; set; }
+        public string Dossnr { get; set; }
         [DisplayName("Strumpor")]
         public bool Socks { get; set; }
         [DisplayName("Tofflor")]
@@ -64,9 +66,10 @@ namespace SkalEF.Models
         [DisplayName("Ladda upp foto")]
         public IFormFile ImageFile { get; set; }
         
+       
+
+
         
-
-
 
     }
 }

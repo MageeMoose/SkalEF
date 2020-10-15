@@ -14,7 +14,7 @@ namespace SkalEF.Models
         }
 
         public DbSet<Client> Clients { get; set; }
-        public DbSet<RoomsNumbers> Rooms { get; set; }
+        
 
     }
 }
