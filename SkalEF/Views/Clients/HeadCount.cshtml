@@ -12,14 +12,33 @@
         @foreach (var item in Model)
         {
 
-            <div class="card col-3" style="width:px;">
-                <img class="card-img-top" src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:100%;" />
-                <div class="card-body">
-                    <h1>@Html.DisplayFor(modelItem => item.Room)</h1>
-                        @Html.DisplayNameFor(item => item.LasName)
-                    <h4>@Html.DisplayFor(modelItem => item.LasName)</h4>
-                        @Html.DisplayNameFor(item => item.FirNamn)
-                    <h5>@Html.DisplayFor(modelItem => item.FirNamn)</h5>
+            <div class="border col-3 align-content-lg-center" >
+                <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:120px; height:auto" />
+                <div>
+                    <h3 class="border-bottom">@Html.DisplayFor(modelItem => item.Room)</h3>
+                    <div class="row border-bottom">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(item => item.LasName)
+                            @Html.DisplayFor(modelItem => item.LasName)
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayNameFor(item => item.FirNamn)
+                            @Html.DisplayFor(modelItem => item.FirNamn)
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-bordered" style="width:220px;">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
