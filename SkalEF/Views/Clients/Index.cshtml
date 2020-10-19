@@ -11,7 +11,7 @@
 <h1>Förvarstagna</h1>
 
 <p>
-    <a asp-action="AddOrEdit">Lägg till</a>
+    <a asp-action="AddOrEdit"><button type="button" class="btn btn-light"> Lägg till     <img src="~/lib/bootstrap-icons-1.0.0/plus-circle-fill.svg"  alt="" width="20" height="20" /> </button></a>
 </p>
 <table class="table border-bottom">
     <h3 class="lead">Avdelning 1</h3>
@@ -71,9 +71,9 @@
                 </td>
 
                 <td>
-                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID">Ändra</a> |
-                    <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/pencil-square.svg" alt="" width="28" height="28" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/file-earmark-medical.svg" alt="" width="28" height="28" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/trash-fill.svg" alt="" width="28" height="28" /> </a>
                 </td>
             </tr>
         }
@@ -138,9 +138,9 @@
                 </td>
 
                 <td>
-                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID">Ändra</a> |
-                    <a asp-action="Details" asp-route-id="@item.ClientID">Info</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ClientID">Ta bort</a>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/pencil-square.svg" alt="" width="28" height="28" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/file-earmark-medical.svg" alt="" width="28" height="28" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClientID"><img src="~/lib/bootstrap-icons-1.0.0/trash-fill.svg" alt="" width="28" height="28" /> </a>
                 </td>
             </tr>
         }

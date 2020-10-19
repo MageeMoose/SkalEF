@@ -65,11 +65,32 @@ namespace SkalEF.Models
         [NotMapped]
         [DisplayName("Ladda upp foto")]
         public IFormFile ImageFile { get; set; }
-        
-       
+
+        [Required]
+        public int AmountSocks { get; set; }
+        [Required]
+        public int AmountTrousers { get; set; }
+        [Required]
+        public int AmountUnderware { get; set; }
+        [Required]
+        public int AmountHeadphones { get; set; }
+        [Required]
+        public int AmountMobile { get; set; }
+        [Required]
+        public int AmountSlippers { get; set; }
+        [Required]
+        public string CaseOfficer { get; set; }
+        [DisplayFormat(DataFormatString ="yyyy-MM-dd")]
+        public DateTime Date { get; set; }
 
 
-        
+
+
+
+
+
+
+
 
     }
 }
