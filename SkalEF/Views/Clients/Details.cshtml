@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountSocks)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -107,7 +107,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountSlippers)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -154,7 +154,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountUnderware)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -201,7 +201,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountMobile)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -248,7 +248,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountHeadphones)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -295,7 +295,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.AmountTrousers)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -321,13 +321,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-2">
 
-            </div>
+        </div>
+        <div class="col-md-2">
+            <h3><span class="badge badge-secondary">Uppdaterad av: @Html.DisplayFor(model => model.CaseOfficer) den @Html.DisplayFor(model => model.Date)</span></h3>
         </div>
     </div>
     
-    
+    <br />
 </div>
 <div>
     <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.ClientID">Ändra</a> |

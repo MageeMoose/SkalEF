@@ -79,8 +79,11 @@ namespace SkalEF.Models
         [Required]
         public int AmountSlippers { get; set; }
         [Required]
+        [DisplayName("Ansvarig Personal")]
         public string CaseOfficer { get; set; }
-        [DisplayFormat(DataFormatString ="yyyy-MM-dd")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString ="{0:yyyy-MM-dd}")]
+        [DisplayName("Datum")]
         public DateTime Date { get; set; }
 
 

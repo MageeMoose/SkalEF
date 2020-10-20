@@ -50,192 +50,13 @@ namespace SkalEF.Controllers
         // GET: Clients/Create
         public IActionResult AddOrEdit(int id)
         {
-            #region ViewData
-            List<SelectListItem> sectionNumbers = new List<SelectListItem>() {
-                new SelectListItem {
-                    Text = "Avdeling 1", Value = "Avdelning 1"
-                },
-                new SelectListItem {
-                    Text = "Avdeling 2", Value = "Avdelning 2"
-                },
-            };
-            ViewData["SectionNumbers"] = sectionNumbers;
-            #endregion
+           
 
-            #region ViewData
-            List<SelectListItem> roomNumbers = new List<SelectListItem>() {
-                new SelectListItem {
-                    Text = "2073:1", Value = "2073:1"
-                },
-                new SelectListItem {
-                    Text = "2073:2", Value = "2073:2"
-                },
-                new SelectListItem {
-                    Text = "2073:3", Value = "2073:3"
-                },
-                new SelectListItem {
-                    Text = "2073:4", Value = "2073:4"
-                },
-                new SelectListItem {
-                    Text = "2073:5", Value = "2073:5"
-                },
-                new SelectListItem {
-                    Text = "2073:6", Value = "2073:6"
-                },
-                new SelectListItem {
-                    Text = "2077:1", Value = "2077:1"
-                },
-                new SelectListItem {
-                    Text = "2077:2", Value = "2077:2"
-                },
-                new SelectListItem {
-                    Text = "2077:3", Value = "2077:3"
-                },
-                new SelectListItem {
-                    Text = "2077:4", Value = "2077:4"
-                },  
-                new SelectListItem {
-                    Text = "2077:5", Value = "2077:5"
-                },
-                new SelectListItem {
-                    Text = "2077:6", Value = "2077:6"
-                },
-                new SelectListItem {
-                    Text = "2077:7", Value = "2077:7"
-                },
-                new SelectListItem {
-                    Text = "2105:1", Value = "2105:1"
-                },
-                new SelectListItem {
-                    Text = "2105:2", Value = "2105:2"
-                },
-                new SelectListItem {
-                    Text = "2105:3", Value = "2105:3"
-                },
-                new SelectListItem {
-                    Text = "2105:4", Value = "2105:4"
-                },
-                new SelectListItem {
-                    Text = "2105:5", Value = "2105:5"
-                },
-                new SelectListItem {
-                    Text = "2105:6", Value = "2105:6"
-                },
-                new SelectListItem {
-                    Text = "2105:7", Value = "2105:7"
-                },
-                 new SelectListItem {
-                    Text = "2106:1", Value = "2106:1"
-                },
-                new SelectListItem {
-                    Text = "2106:2", Value = "2106:2"
-                },
-                new SelectListItem {
-                    Text = "2106:3", Value = "2106:3"
-                },
-                new SelectListItem {
-                    Text = "2106:4", Value = "2106:4"
-                },
-                new SelectListItem {
-                    Text = "2107:1", Value = "2107:1"
-                },
-                new SelectListItem {
-                    Text = "2107:2", Value = "2107:2"
-                },
-                new SelectListItem {
-                    Text = "2107:3", Value = "2107:3"
-                },
-                new SelectListItem {
-                    Text = "2108:1", Value = "2108:1"
-                },
-                new SelectListItem {
-                    Text = "2108:2", Value = "2108:2"
-                },
-                new SelectListItem {
-                    Text = "2108:3", Value = "2108:3"
-                }, 
-                new SelectListItem {
-                    Text = "2108:4", Value = "2108:4"
-                },
-                new SelectListItem {
-                    Text = "2110:1", Value = "2110:1"
-                },
-                new SelectListItem {
-                    Text = "2110:2", Value = "2110:2"
-                },
-                new SelectListItem {
-                    Text = "2111:1", Value = "2111:1"
-                },
-                new SelectListItem {
-                    Text = "2111:2", Value = "2111:2"
-                },
-                new SelectListItem {
-                    Text = "2111:3", Value = "2111:3"
-                },
-                new SelectListItem {
-                    Text = "2111:4", Value = "2111:4"
-                },
-                new SelectListItem {
-                    Text = "2111:5", Value = "2111:5"
-                },
-                new SelectListItem {
-                    Text = "2111:6", Value = "2111:6"
-                },
-                new SelectListItem {
-                    Text = "2113:1", Value = "2113:1"
-                }, 
-                new SelectListItem {
-                    Text = "2113:2", Value = "2113:2"
-                },
-                new SelectListItem {
-                    Text = "2113:3", Value = "2113:3"
-                },
-                new SelectListItem {
-                    Text = "2113:4", Value = "2113:4"
-                },
-                new SelectListItem {
-                    Text = "2114:1:", Value = "2114:1"
-                },
-                new SelectListItem {
-                    Text = "2114:2",  Value = "2114:2"
-                },
-                new SelectListItem {
-                    Text = "2114:3", Value = "2114:3"
-                },
-                new SelectListItem {
-                    Text = "2114:4", Value = "2114:4"
-                },
-                new SelectListItem {
-                    Text = "2115:1", Value = "2115:1"
-                },
-                new SelectListItem {
-                    Text = "2115:2", Value = "2115:2"
-                },
-                new SelectListItem {
-                    Text = "2115:3", Value = "2115:3"
-                }, 
-                new SelectListItem {
-                    Text = "2115:4", Value = "2115:4"
-                },
-                new SelectListItem {
-                    Text = "2115:5", Value = "2115:5"
-                },
-                new SelectListItem {
-                    Text = "2115:6", Value = "2115:6"
-                },
-                new SelectListItem {
-                    Text = "2115:7", Value = "2115:7"
-                },
-                new SelectListItem
-                {
-                    Text = "2115:8", Value = "2115:8"
-                },
-            };
-            ViewData["RoomNumbers"] = roomNumbers;
-                #endregion
+           
             if (id == 0)
                 return View(new Client());
             else
+                
             return View(_context.Clients.Find(id));
         }
 
@@ -243,12 +64,12 @@ namespace SkalEF.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile")] Client client)
+        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile,AmountSocks,AmountTrousers,AmountUnderware,AmountHeadphones,AmountMobile,AmountSlippers,CaseOfficer,Date")] Client client)
         {
             if (ModelState.IsValid)
             {
                 string defaultImage = "terry.jpg";
-     
+               
                 //Insert
                 if (client.ClientID!=0)
                 {
