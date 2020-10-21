@@ -50,9 +50,7 @@ namespace SkalEF.Controllers
         // GET: Clients/Create
         public IActionResult AddOrEdit(int id)
         {
-           
 
-           
             if (id == 0)
                 return View(new Client());
             else
@@ -64,7 +62,7 @@ namespace SkalEF.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile,AmountSocks,AmountTrousers,AmountUnderware,AmountHeadphones,AmountMobile,AmountSlippers,CaseOfficer,Date")] Client client)
+        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile,ImgName,AmountSocks,AmountTrousers,AmountUnderware,AmountHeadphones,AmountMobile,AmountSlippers,CaseOfficer,Date")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -73,11 +71,11 @@ namespace SkalEF.Controllers
                 //Insert
                 if (client.ClientID!=0)
                 {
-                    if(client.ImageFile == null && client.ImgName == null)
+                    if (client.ImageFile == null && client.ImgName == null)
                     {
                         client.ImgName = defaultImage;
                     }
-                    else if (client.ImgName != null)
+                    else if (client.ImageFile != null)
                     {
                         //Save profileimage to wwwRoot/img
                         string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -89,6 +87,15 @@ namespace SkalEF.Controllers
                         {
                             await client.ImageFile.CopyToAsync(fileStream);
                         }
+                    }
+                    else
+                    {
+                        _context.Update(client);
+                       
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction(nameof(Index));
+
                     }
                     
                     _context.Update(client);

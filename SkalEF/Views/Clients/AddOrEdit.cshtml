@@ -9,8 +9,12 @@
   
 }
 
-
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    function ResetCaseOffiser() {
+        $("[asp-for='CaseOfficer']").val("");
+    }
+</script>
 <h4>Förvarstagen</h4>
 <hr />
 <div class="row">
@@ -18,6 +22,7 @@
         <form asp-action="AddOrEdit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ClientID" />
+            <input type="hidden" asp-for="ImgName" />
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label> <br />
                 <input asp-for="ImageFile" accept="image/*" />

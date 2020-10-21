@@ -2,28 +2,47 @@
 
 @{
     ViewData["Title"] = "HeadCount";
-  
+    var secOne = Model.Where(c => c.Section == "Avdelning 1");
+    var secTwo = Model.Where(c => c.Section == "Avdelning 2");
+
 }
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Sec1").click(function(){
+      $("#S1").show();
+      $("#S2").hide();
+  });
+  $("#Sec2").click(function(){
+      $("#S2").show();
+      $("#S1").hide();
+  });
+});
+</script>
 <h1></h1>
-
 <div class="container">
-    <div class="row">
-        @foreach (var item in Model)
+    <div class="row justify-content-center">
+        <div class="col-3"><button type="button" class="btn btn-light" id="Sec1"> Avdelning 1 </button> </div>
+        <div class="col-3"><button type="button" class="btn btn-light" id="Sec2"> Avdelning 2 </button>  </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" id="S1">
+        @foreach (var item in secOne)
         {
 
-            <div class="border col-3 align-content-lg-center" >
+            <div class="border col-3 align-content-lg-center">
                 <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:120px; height:auto" />
                 <div>
                     <h3 class="border-bottom">@Html.DisplayFor(modelItem => item.Room)</h3>
                     <div class="row border-bottom">
                         <div class="col-6">
-                            @Html.DisplayNameFor(item => item.LasName)
-                            @Html.DisplayFor(modelItem => item.LasName)
+                            <p>@Html.DisplayNameFor(item => item.LasName) </p>
+                            <p>@Html.DisplayFor(modelItem => item.LasName)</p>
                         </div>
                         <div class="col-6">
-                            @Html.DisplayNameFor(item => item.FirNamn)
-                            @Html.DisplayFor(modelItem => item.FirNamn)
+                            <p>@Html.DisplayNameFor(item => item.FirNamn)</p>
+                            <p>@Html.DisplayFor(modelItem => item.FirNamn)</p>
                         </div>
                     </div>
                 </div>
@@ -45,7 +64,45 @@
         }
 
     </div>
-  
+
+    <div class="row" id="S2">
+        @foreach (var item in secTwo)
+        {
+
+            <div class="border col-3 align-content-lg-center">
+                <img src="@("~/img/"+item.ImgName)" asp-append-version="true" style="width:120px; height:auto" />
+                <div>
+                    <h3 class="border-bottom">@Html.DisplayFor(modelItem => item.Room)</h3>
+                    <div class="row border-bottom">
+                        <div class="col-6">
+                            <p>@Html.DisplayNameFor(item => item.LasName) </p>
+                            <p>@Html.DisplayFor(modelItem => item.LasName)</p>
+                        </div>
+                        <div class="col-6">
+                            <p>@Html.DisplayNameFor(item => item.FirNamn)</p>
+                            <p>@Html.DisplayFor(modelItem => item.FirNamn)</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-bordered" style="width:220px;">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
 
 </div>
 
