@@ -90,6 +90,7 @@ namespace SkalEF.Controllers
                     }
                     else
                     {
+                        client.Date = DateTime.Now;
                         _context.Update(client);
                        
                         await _context.SaveChangesAsync();
@@ -118,7 +119,8 @@ namespace SkalEF.Controllers
                             await client.ImageFile.CopyToAsync(fileStream);
                         }
                     }
-                   
+
+                    client.Date = DateTime.Now;
                     _context.Add(client);
                     
 
