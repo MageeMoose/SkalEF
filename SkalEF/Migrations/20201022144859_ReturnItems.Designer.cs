@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkalEF.Models;
 
 namespace SkalEF.Migrations
 {
     [DbContext(typeof(ClientContex))]
-    partial class ClientContexModelSnapshot : ModelSnapshot
+    [Migration("20201022144859_ReturnItems")]
+    partial class ReturnItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +68,7 @@ namespace SkalEF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Dossnr")
@@ -80,10 +82,10 @@ namespace SkalEF.Migrations
                     b.Property<string>("Food")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<DateTime?>("HeadphoneGiveDate")
+                    b.Property<DateTime>("HeadphoneGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("HeadphoneRetrunDate")
+                    b.Property<DateTime>("HeadphoneRetrunDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Headphones")
@@ -102,10 +104,10 @@ namespace SkalEF.Migrations
                     b.Property<bool>("Mobil")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("MobileGiveDate")
+                    b.Property<DateTime>("MobileGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("MobileReturnDate")
+                    b.Property<DateTime>("MobileReturnDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Room")
@@ -119,37 +121,37 @@ namespace SkalEF.Migrations
                     b.Property<bool>("Slippers")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("SlippersGiveDate")
+                    b.Property<DateTime>("SlippersGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("SlippersRetrunDate")
+                    b.Property<DateTime>("SlippersRetrunDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Socks")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("SocksGiveDate")
+                    b.Property<DateTime>("SocksGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("SocksRetrunDate")
+                    b.Property<DateTime>("SocksRetrunDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Trouser")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("TrouserGiveDate")
+                    b.Property<DateTime>("TrouserGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("TrouserReturnDate")
+                    b.Property<DateTime>("TrouserReturnDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Underware")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("UnderwareGiveDate")
+                    b.Property<DateTime>("UnderwareGiveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("UnderwareReturnDate")
+                    b.Property<DateTime>("UnderwareReturnDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ClientID");

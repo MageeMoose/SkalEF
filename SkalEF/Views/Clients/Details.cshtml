@@ -61,7 +61,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountSocks)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.SocksGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -108,7 +108,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountSlippers)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.SlippersGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -155,7 +155,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountUnderware)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.UnderwareGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -202,7 +202,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountMobile)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.MobileGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -249,7 +249,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountHeadphones)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.HeadphoneGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -296,7 +296,7 @@
                     <tbody>
                         <tr>
                             <td>@Html.DisplayFor(model => model.AmountTrousers)</td>
-                            <td></td>
+                            <td>@Html.DisplayFor(model => model.TrouserGiveDate)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -331,6 +331,6 @@
     <br />
 </div>
 <div>
-    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.ClientID">Ändra</a> |
+    <a class="btn btn-success" asp-action="AddOrEdit" asp-route-id="@Model.ClientID">Ändra</a> |
     <a asp-action="Index">Tillbaka</a>
 </div>

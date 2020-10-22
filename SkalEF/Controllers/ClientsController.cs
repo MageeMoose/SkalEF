@@ -68,13 +68,16 @@ namespace SkalEF.Controllers
             {
                 string defaultImage = "terry.jpg";
                
-                //Insert
+             //check if the user is updating or adding a client
+                //Client exist
                 if (client.ClientID!=0)
                 {
+                  // Checking if the user has uploaded an image or not 
+                    //If no image has been picked and ther is no priveous image, use the default image 
                     if (client.ImageFile == null && client.ImgName == null)
                     {
                         client.ImgName = defaultImage;
-                    }
+                    } // If the user has picked an image, create a uniqe filename and add the name to the DB
                     else if (client.ImageFile != null)
                     {
                         //Save profileimage to wwwRoot/img
@@ -90,7 +93,42 @@ namespace SkalEF.Controllers
                     }
                     else
                     {
+                        // If the client already has an image
+
+                        // set the date when the client profile was last updated
                         client.Date = DateTime.Now;
+
+                        // Set the date when the client recived Items after the initial meeting
+                        if (client.Headphones == true && client.HeadphoneGiveDate == null)
+                        {
+                            client.HeadphoneGiveDate = DateTime.Now;
+                        }
+
+                        if (client.Mobil == true && client.MobileGiveDate == null)
+                        {
+                            client.MobileGiveDate = DateTime.Now;
+                        }
+
+                        if (client.Socks == true && client.SocksGiveDate == null)
+                        {
+                            client.SocksGiveDate = DateTime.Now;
+                        }
+
+                        if (client.Trouser == true && client.TrouserGiveDate == null)
+                        {
+                            client.TrouserGiveDate = DateTime.Now;
+                        }
+
+                        if (client.Slippers == true && client.SlippersGiveDate == null)
+                        {
+                            client.SlippersGiveDate = DateTime.Now;
+                        }
+
+                        if (client.Underware == true && client.UnderwareGiveDate == null)
+                        {
+                            client.UnderwareGiveDate = DateTime.Now;
+                        }
+
                         _context.Update(client);
                        
                         await _context.SaveChangesAsync();
@@ -98,11 +136,10 @@ namespace SkalEF.Controllers
                         return RedirectToAction(nameof(Index));
 
                     }
-                    
-                    _context.Update(client);
                 }
                 else
                 {
+                    // 
                     if(client.ImageFile==null)
                     {
                         client.ImgName = defaultImage;
@@ -118,6 +155,36 @@ namespace SkalEF.Controllers
                         {
                             await client.ImageFile.CopyToAsync(fileStream);
                         }
+                    }
+                    // Set the date when the client recived Items
+                    if (client.Headphones == true)
+                    {
+                        client.HeadphoneGiveDate = DateTime.Now;
+                    }
+
+                    if (client.Mobil == true)
+                    {
+                        client.MobileGiveDate = DateTime.Now;
+                    }
+
+                    if (client.Socks == true)
+                    {
+                        client.SocksGiveDate = DateTime.Now;
+                    }
+
+                    if (client.Trouser == true)
+                    {
+                        client.TrouserGiveDate = DateTime.Now;
+                    }
+
+                    if (client.Slippers == true)
+                    {
+                        client.SlippersGiveDate = DateTime.Now;
+                    }
+
+                    if (client.Underware == true)
+                    {
+                        client.UnderwareGiveDate = DateTime.Now;
                     }
 
                     client.Date = DateTime.Now;
@@ -182,5 +249,7 @@ namespace SkalEF.Controllers
         {
             return View(await _context.Clients.ToListAsync());
         }
+
+        
     }
 }
