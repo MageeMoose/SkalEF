@@ -62,7 +62,7 @@ namespace SkalEF.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile,ImgName,AmountSocks,AmountTrousers,AmountUnderware,AmountHeadphones,AmountMobile,AmountSlippers,CaseOfficer,Date")] Client client)
+        public async Task<IActionResult> AddOrEdit([Bind("ClientID,Room,FirNamn,LasName,Lang,Section,Food,Dossnr,Socks,Slippers,Underware,Mobil,Headphones,Trouser,ImageFile,ImgName,AmountSocks,AmountTrousers,AmountUnderware,AmountHeadphones,AmountMobile,AmountSlippers,CaseOfficer,Date,,SocksGiveDate,SocksRetrunDate,TrouserGiveDate,TrouserReturnDate,UnderwareGiveDate,UnderwareReturn,Date,HeadphoneGiveDate,MobileGiveDate,MobileReturnDate,SlippersGiveDate,SlippersRetrunDate")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -99,32 +99,32 @@ namespace SkalEF.Controllers
                         client.Date = DateTime.Now;
 
                         // Set the date when the client recived Items after the initial meeting
-                        if (client.Headphones == true && client.HeadphoneGiveDate == null)
+                        if (client.Headphones == true & client.HeadphoneGiveDate == null)
                         {
                             client.HeadphoneGiveDate = DateTime.Now;
                         }
 
-                        if (client.Mobil == true && client.MobileGiveDate == null)
+                        if (client.Mobil == true & client.MobileGiveDate == null)
                         {
                             client.MobileGiveDate = DateTime.Now;
                         }
 
-                        if (client.Socks == true && client.SocksGiveDate == null)
+                        if (client.Socks == true & client.SocksGiveDate == null)
                         {
                             client.SocksGiveDate = DateTime.Now;
                         }
 
-                        if (client.Trouser == true && client.TrouserGiveDate == null)
+                        if (client.Trouser == true & client.TrouserGiveDate == null)
                         {
                             client.TrouserGiveDate = DateTime.Now;
                         }
 
-                        if (client.Slippers == true && client.SlippersGiveDate == null)
+                        if (client.Slippers == true & client.SlippersGiveDate == null)
                         {
                             client.SlippersGiveDate = DateTime.Now;
                         }
 
-                        if (client.Underware == true && client.UnderwareGiveDate == null)
+                        if (client.Underware == true & client.UnderwareGiveDate == null)
                         {
                             client.UnderwareGiveDate = DateTime.Now;
                         }
