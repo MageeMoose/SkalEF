@@ -1,20 +1,16 @@
-﻿@model SkalEF.Models.Client
+﻿@model SkalEF.Models.ClientModel
 
 
 
 
 @{
     ViewData["Title"] = "Lägg till";
-    
+    var loanItems = Model.Items;
   
 }
 
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-    function ResetCaseOffiser() {
-        $("[asp-for='CaseOfficer']").val("");
-    }
-</script>
+
+
 <h4>Förvarstagen</h4>
 <hr />
 <div class="row">
@@ -30,20 +26,20 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label asp-for="FirNamn" class="control-label"></label>
-                    <input asp-for="FirNamn" class="form-control" />
-                    <span asp-validation-for="FirNamn" class="text-danger"></span>
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="LasName" class="control-label"></label>
-                    <input asp-for="LasName" class="form-control" />
-                    <span asp-validation-for="LasName" class="text-danger"></span>
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Dossnr" class="control-label"></label>
-                <input asp-for="Dossnr" class="form-control" />
-                <span asp-validation-for="Dossnr" class="text-danger"></span>
+                <label asp-for="DossNr" class="control-label"></label>
+                <input asp-for="DossNr" class="form-control" />
+                <span asp-validation-for="DossNr" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Lang" class="control-label"></label>
@@ -52,9 +48,9 @@
             </div>
 
             <div class="form-group ">
-                <label asp-for="Food" class="control-label"></label>
-                <input asp-for="Food" class="form-control" />
-                <span asp-validation-for="Food" class="text-danger"></span>
+                <label asp-for="FoodChoice" class="control-label"></label>
+                <input asp-for="FoodChoice" class="form-control" />
+                <span asp-validation-for="FoodChoice" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="form-group col-4">
@@ -71,51 +67,42 @@
                 </div>
 
             </div>
-
-            <div class="form-row">
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Socks" /> @Html.DisplayNameFor(model => model.Socks)
-                        <input asp-for="AmountSocks" class="form-control " />
-                    </label>
+            @foreach (var item in loanItems)
+                <div class="form-group col-md-6">
+                    <label asp-for="ItemName" class="control-label"> </label>
+                    <input asp-for="AmountSocks" class="form-control " />
                 </div>
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Slippers" /> @Html.DisplayNameFor(model => model.Slippers)
-                        <input asp-for="AmountSlippers" class="form-control " />
-                    </label>
-                </div>
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Underware" /> @Html.DisplayNameFor(model => model.Underware)
-                        <input asp-for="AmountUnderware" class="form-control " />
-                    </label>
-
-                </div>
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Mobil" /> @Html.DisplayNameFor(model => model.Mobil)
-                        <input asp-for="AmountMobile" class="form-control " />
-                    </label>
-                </div>
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Headphones" /> @Html.DisplayNameFor(model => model.Headphones)
-                        <input asp-for="AmountHeadphones" class="form-control " />
-                    </label>
-                </div>
-                <div class="form-group form-check col-md-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Trouser" /> @Html.DisplayNameFor(model => model.Trouser)
-                        <input asp-for="AmountTrousers" class="form-control " />
-                    </label>
-                </div>
+            @*<div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="AmountSocks" class="control-label"> </label>
+                <input asp-for="AmountSocks" class="form-control " />
             </div>
+            <div class="form-group col-md-6">
+                <label asp-for="AmountHeadphones" class="control-label"> </label>
+                <input asp-for="AmountHeadphones" class="form-control " />
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="AmountMobile" class="control-label"> </label>
+                <input asp-for="AmountMobile" class="form-control " />
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="AmountSlippers" class="control-label"> </label>
+                <input asp-for="AmountSlippers" class="form-control " />
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="AmountSocks" class="control-label"> </label>
+                <input asp-for="AmountSocks" class="form-control " />
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="AmountTrousers" class="control-label"> </label>
+                <input asp-for="AmountTrousers" class="form-control " />
+            </div>
+        </div>*@
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label asp-for="CaseOfficer" class="control-label"></label>
-                    <input asp-for="CaseOfficer" class="form-control" />
-                    <span asp-validation-for="CaseOfficer" class="text-danger"></span>
+                    <label asp-for="UpdatedBy" class="control-label"></label>
+                    <input asp-for="UpdatedBy" class="form-control" />
+                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">

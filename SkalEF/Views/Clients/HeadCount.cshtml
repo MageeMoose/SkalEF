@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SkalEF.Models.Client>
+﻿@model IEnumerable<SkalEF.Models.ClientModel>
 
 @{
     ViewData["Title"] = "HeadCount";
@@ -40,13 +40,13 @@ $(document).ready(function(){
                 <div class="col-6">
                     <h3 class="border-bottom">@Html.DisplayFor(modelItem => item.Room)</h3>
                     <div class="col-6">
-                        <b class="border-bottom">@Html.DisplayNameFor(item => item.LasName)</b>
-                        @Html.DisplayFor(modelItem => item.LasName)
+                        <b class="border-bottom">@Html.DisplayNameFor(item => item.LastName)</b>
+                        @Html.DisplayFor(modelItem => item.LastName)
 
                     </div>
                     <div class="col-6">
-                        <b class="border-bottom border-top">@Html.DisplayNameFor(item => item.FirNamn)</b>
-                        @Html.DisplayFor(modelItem => item.FirNamn)
+                        <b class="border-bottom border-top">@Html.DisplayNameFor(item => item.FirstName)</b>
+                        @Html.DisplayFor(modelItem => item.FirstName)
                     </div>
                 </div>
             </div>
@@ -82,13 +82,13 @@ $(document).ready(function(){
                     <div class="col-6">
                         <h3 class="border-bottom">@Html.DisplayFor(modelItem => item.Room)</h3>
                         <div class="col-6">
-                            <b class="border-bottom">@Html.DisplayNameFor(item => item.LasName)</b>
-                            @Html.DisplayFor(modelItem => item.LasName)
+                            <b class="border-bottom">@Html.DisplayNameFor(item => item.LastName)</b>
+                            @Html.DisplayFor(modelItem => item.LastName)
 
                         </div>
                         <div class="col-6">
-                            <b class="border-bottom border-top">@Html.DisplayNameFor(item => item.FirNamn)</b>
-                                @Html.DisplayFor(modelItem => item.FirNamn)
+                            <b class="border-bottom border-top">@Html.DisplayNameFor(item => item.FirstName)</b>
+                                @Html.DisplayFor(modelItem => item.FirstName)
                         </div>
                     </div>
                 </div>

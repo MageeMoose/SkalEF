@@ -1,4 +1,4 @@
-﻿@model SkalEF.Models.Client
+﻿@model SkalEF.Models.ClientModel
 
 @{
     ViewData["Title"] = "Details";
@@ -12,10 +12,10 @@
             <img class="card-img-top" src="@("~/img/"+Model.ImgName)" asp-append-version="true" style="width:100%;" />
             <div class="card-body">
                 <h1>@Html.DisplayFor(model => model.Room)</h1>
-                    @Html.DisplayNameFor(model => model.LasName)
-                <h4>@Html.DisplayFor(model => model.LasName)</h4>
-                    @Html.DisplayNameFor(model => model.FirNamn)
-                <h5>@Html.DisplayFor(model => model.FirNamn)</h5>
+                    @Html.DisplayNameFor(model => model.LastName)
+                <h4>@Html.DisplayFor(model => model.LastName)</h4>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                <h5>@Html.DisplayFor(model => model.FirstName)</h5>
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
     <div class="container" style="margin:50px;">
         <div class="row">
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.Dossnr)
-                <h5>@Html.DisplayFor(model => model.Dossnr)</h5>
+                @Html.DisplayNameFor(model => model.DossNr)
+                <h5>@Html.DisplayFor(model => model.DossNr)</h5>
             </div>
             <div class="col-md-3">
                 @Html.DisplayNameFor(model => model.Lang)
@@ -36,18 +36,15 @@
                 <h5>@Html.DisplayFor(model => model.Section)</h5>
             </div>
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.Food)
-                <h5>@Html.DisplayFor(model => model.Food)</h5>
+                @Html.DisplayNameFor(model => model.FoodChoice)
+                <h5>@Html.DisplayFor(model => model.FoodChoice)</h5>
             </div>
         </div>
 
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-2" style="padding-top:50px;">
-                @Html.DisplayNameFor(model => model.Socks)
-                @Html.DisplayFor(model => model.Socks)
-            </div>
+            
             <div class="col-md-4 ">
                 <h5 class="text-center">Utlånade</h5>
                 <table class="table table-bordered">
@@ -60,8 +57,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountSocks)</td>
-                            <td>@Html.DisplayFor(model => model.SocksGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -91,10 +88,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="padding-top:30px;">
-                @Html.DisplayNameFor(model => model.Slippers)
-                @Html.DisplayFor(model => model.Slippers)
-            </div>
+           
             <div class="col-md-4 ">
 
                 <table class="table table-bordered">
@@ -107,8 +101,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountSlippers)</td>
-                            <td>@Html.DisplayFor(model => model.SlippersGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -138,10 +132,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="padding-top:30px;">
-                @Html.DisplayNameFor(model => model.Underware)
-                @Html.DisplayFor(model => model.Underware)
-            </div>
+           
             <div class="col-md-4 ">
 
                 <table class="table table-bordered">
@@ -154,8 +145,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountUnderware)</td>
-                            <td>@Html.DisplayFor(model => model.UnderwareGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -185,10 +176,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="padding-top:30px;">
-                @Html.DisplayNameFor(model => model.Mobil)
-                @Html.DisplayFor(model => model.Mobil)
-            </div>
             <div class="col-md-4 ">
 
                 <table class="table table-bordered">
@@ -201,8 +188,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountMobile)</td>
-                            <td>@Html.DisplayFor(model => model.MobileGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -232,10 +219,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="padding-top:20px;">
-                @Html.DisplayNameFor(model => model.Headphones)
-                @Html.DisplayFor(model => model.Headphones)
-            </div>
             <div class="col-md-4 ">
 
                 <table class="table table-bordered">
@@ -248,8 +231,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountHeadphones)</td>
-                            <td>@Html.DisplayFor(model => model.HeadphoneGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -279,10 +262,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="padding-top:10px;">
-                @Html.DisplayNameFor(model => model.Trouser)
-                @Html.DisplayFor(model => model.Trouser)
-            </div>
             <div class="col-md-4 ">
 
                 <table class="table table-bordered">
@@ -295,8 +274,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.AmountTrousers)</td>
-                            <td>@Html.DisplayFor(model => model.TrouserGiveDate)</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -324,7 +303,7 @@
 
         </div>
         <div class="col-md-2">
-            <h3><span class="badge badge-secondary">Uppdaterad av: @Html.DisplayFor(model => model.CaseOfficer) den @Html.DisplayFor(model => model.Date)</span></h3>
+            <h3><span class="badge badge-secondary">Uppdaterad av: @Html.DisplayFor(model => model.UpdatedBy) den </span></h3>
         </div>
     </div>
     

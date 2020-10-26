@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SkalEF.Models;
+using SkalEF.DB;
 
 namespace SkalEF
 {
@@ -26,12 +27,15 @@ namespace SkalEF
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<ClientContex>(opitions =>
-            opitions.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddDbContext<ClientContext>(opitions => 
+            {
+                opitions.UseSqlServer(Configuration.GetConnectionString("DevConnection"));
+            });
+            services.AddTransient<ClientDB>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IServiceProvider services, IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -52,7 +56,9 @@ namespace SkalEF
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Clients}/{action=Index}/{id?}");
-            });
+            }); 
+            
+            services.GetService<ClientDB>().Create().GetAwaiter().GetResult();
         }
     }
 }
