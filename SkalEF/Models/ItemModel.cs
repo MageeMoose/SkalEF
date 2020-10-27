@@ -8,18 +8,35 @@ namespace SkalEF.Models
 {
     public class ItemModel
     {
+        public int ItemID { get; set; }
+        public string ItemName { get; set; }
+
+        public ItemModel()
+        {
+
+        }
+
+        public ItemModel(Item item)
+        {
+            ItemID = item.ItemID;
+            ItemName = item.ItemName;
+        }
+    }
+
+    public class ClientItemModel
+    {
         public string ItemName { get; set; }
 
         public int ItemCount { get; set; }
         public DateTime ItemOutDate { get; set; }
         public DateTime? ItemInDate { get; set; }
 
-        public ItemModel()
+        public ClientItemModel()
         {
                 
         }
 
-        public ItemModel(ClientItem item)
+        public ClientItemModel(ClientItem item)
         {
             ItemName = item.Item.ItemName;
             ItemCount = item.ItemCount;

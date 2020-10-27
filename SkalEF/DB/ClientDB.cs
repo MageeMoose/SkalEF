@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 using SkalEF.Enums;
 using SkalEF.DB.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace SkalEF.DB
 {
     public class ClientDB
     {
         private ClientContext _context { get; set; }
+        
 
         public ClientDB(ClientContext context)
         {
@@ -43,9 +46,15 @@ namespace SkalEF.DB
             await _context.SaveChangesAsync();
         }
 
-        public async Task SaveImageToDB()
+        public async Task DeleteClient(ClientModel model)
         {
+            var client = await _context.Clients.FirstOrDefaultAsync(x => x.ClientID == model.ClientID);
 
+           
+
+            _context.Clients.Remove(client);
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task AddClient(ClientModel model)
@@ -98,7 +107,12 @@ namespace SkalEF.DB
             return new ClientModel(client);
         }
 
-        public async Task<IEnumerable<ClientModel>> GetAllClients()
+        public async Task<List<ItemModel>> GetAllItems()
+        {
+            return await _context.Items.Select(x => new ItemModel(x)).ToListAsync();
+        }
+
+        public async Task<List<ClientModel>> GetAllClients()
         {
             return await _context.Clients.Select(x => new ClientModel(x)).ToListAsync();
         }

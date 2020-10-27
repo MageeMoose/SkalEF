@@ -45,13 +45,13 @@ namespace SkalEF.Controllers
         }
 
         // GET: Clients/Create
-        public async Task<IActionResult> AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(int? id)
         {
-            if (id == 0)
-                return View(new ClientModel());
-
-
-            return View(await _clientDb.GetClient(id));
+            return View(new AddEditViewModel
+            {
+                ClientModel = id == null ? new ClientModel() : await _clientDb.GetClient(id.Value),
+                Items = await _clientDb.GetAllItems()
+            });
         }
 
         // POST: Clients/Create
@@ -62,8 +62,6 @@ namespace SkalEF.Controllers
         {
             if (ModelState.IsValid)
             {
-                string defaultImage = "terry.jpg";
-               
                 //check if the user is updating or adding a client
                 //Client exist
                 if (client.ClientID != null)
@@ -72,75 +70,54 @@ namespace SkalEF.Controllers
                     //If no image has been picked and ther is no priveous image, use the default image 
                     if (client.ImageFile == null && client.ImgName == null)
                     {
-                        client.ImgName = defaultImage;
+                        client.ImgName = "defaultImage.jpg";
 
                         await _clientDb.EditClient(client);
                         return RedirectToAction(nameof(Index));
-
-
-                        // If the user has picked an image, create a uniqe filename and add the name to the DB
-
                     }
                     else if (client.ImageFile != null)
                     {
+                        // If the user has picked an image, create a uniqe filename and add the name to the DB
                         //Save profileimage to wwwRoot/img
                         await SaveImageToDB(client);
-
-                        await _clientDb.EditClient(client);
-                        
+                        //Update client
+                        await _clientDb.EditClient(client); 
                     }
                     else
                     {
                         // If the client already has an image
-
-
-
                         // Set the date when the client recived Items after the initial meeting
 
 
                         await _clientDb.EditClient(client);
 
                         return RedirectToAction(nameof(Index));
-
                     }
                 }
                 else
                 {
-                    // 
-                    if(client.ImageFile==null)
+                    if(client.ImageFile ==null)
                     {
-                        client.ImgName = defaultImage;
+                        client.ImgName = "defaultImage.jpg";
                     }
                     else
                     {
-                        string wwwRootPath = _hostEnvironment.WebRootPath;
-                        string fileName = Path.GetFileNameWithoutExtension(client.ImageFile.FileName);
-                        string extension = Path.GetExtension(client.ImageFile.FileName);
-                        client.ImgName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                        string path = Path.Combine(wwwRootPath + "/img/", fileName);
-                        using (var fileStream = new FileStream(path, FileMode.Create))
-                        {
-                            await client.ImageFile.CopyToAsync(fileStream);
-                        }
+                        await SaveImageToDB(client);
                     }
                     // Set the date when the client recived Items
-
 
                     await _clientDb.AddClient(client);
                     
                     return RedirectToAction(nameof(Index));
-
-                }
-
-               
-
-                
+                } 
             }
-            return View(client);
+            
+            return View(new AddEditViewModel
+            {
+                ClientModel = client,
+                Items = await _clientDb.GetAllItems()
+            });
         }
-
-    
-      
 
         // GET: Clients/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -162,21 +139,21 @@ namespace SkalEF.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var client = await _clientDb.GetClient(id);
 
+            if (client.ImgName != "defaultImage.jpg")
+            {
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", client.ImgName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+            }
+            // Delete the client info
+            await _clientDb.DeleteClient(client);
 
-        //    var client = await _context.Clients.FindAsync(id);
-            
-        //    // Delete image from folder
-        //    var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", client.ImgName);
-        //    if (System.IO.File.Exists(imagePath))
-        //        System.IO.File.Delete(imagePath);
-        //    // Delete the client info
-        //    _context.Clients.Remove(client);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return RedirectToAction(nameof(Index));
+        }
 
         //private bool ClientExists(int id)
         //{

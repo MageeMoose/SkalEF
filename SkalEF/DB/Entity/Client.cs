@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace SkalEF.DB.Entity
 {
@@ -40,7 +41,7 @@ namespace SkalEF.DB.Entity
         public string DossNr { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
-        public string ImgName { get; set; }
+        public string? ImgName { get; set; }
        
         [NotNull]
         public string UpdatedBy { get; set; }
@@ -64,6 +65,7 @@ namespace SkalEF.DB.Entity
             DossNr = model.DossNr;
             ImgName = model.ImgName;
             UpdatedBy = model.UpdatedBy;
+           
         }
     }
 }

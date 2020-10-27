@@ -1,11 +1,11 @@
-﻿@model SkalEF.Models.ClientModel
+﻿@model SkalEF.Models.AddEditViewModel
 
 
 
 
 @{
     ViewData["Title"] = "Lägg till";
-    var loanItems = Model.Items;
+    
   
 }
 
@@ -17,61 +17,67 @@
     <div class="col-md-6">
         <form asp-action="AddOrEdit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ClientID" />
-            <input type="hidden" asp-for="ImgName" />
+            <input type="hidden" asp-for="ClientModel.ClientID" />
+            <input type="hidden" asp-for="ClientModel.ImgName" />
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label> <br />
-                <input asp-for="ImageFile" accept="image/*" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <label asp-for="ClientModel.ImageFile" class="control-label"></label> <br />
+                <input asp-for="ClientModel.ImageFile" accept="image/*" />
+                <span asp-validation-for="ClientModel.ImageFile" class="text-danger"></span>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <label asp-for="ClientModel.FirstName" class="control-label"></label>
+                    <input asp-for="ClientModel.FirstName" class="form-control" />
+                    <span asp-validation-for="ClientModel.FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    <label asp-for="ClientModel.LastName" class="control-label"></label>
+                    <input asp-for="ClientModel.LastName" class="form-control" />
+                    <span asp-validation-for="ClientModel.LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="DossNr" class="control-label"></label>
-                <input asp-for="DossNr" class="form-control" />
-                <span asp-validation-for="DossNr" class="text-danger"></span>
+                <label asp-for="ClientModel.DossNr" class="control-label"></label>
+                <input asp-for="ClientModel.DossNr" class="form-control" />
+                <span asp-validation-for="ClientModel.DossNr" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lang" class="control-label"></label>
-                <input asp-for="Lang" class="form-control" />
-                <span asp-validation-for="Lang" class="text-danger"></span>
+                <label asp-for="ClientModel.Lang" class="control-label"></label>
+                <input asp-for="ClientModel.Lang" class="form-control" />
+                <span asp-validation-for="ClientModel.Lang" class="text-danger"></span>
             </div>
 
             <div class="form-group ">
-                <label asp-for="FoodChoice" class="control-label"></label>
-                <input asp-for="FoodChoice" class="form-control" />
-                <span asp-validation-for="FoodChoice" class="text-danger"></span>
+                <label asp-for="ClientModel.FoodChoice" class="control-label"></label>
+                <input asp-for="ClientModel.FoodChoice" class="form-control" />
+                <span asp-validation-for="ClientModel.FoodChoice" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="form-group col-4">
-                    <label asp-for="Section" class="control-label"></label>
-                    <input asp-for="Section" class="form-control" />
-                    <span asp-validation-for="Section" class="text-danger"></span>
+                    <label asp-for="ClientModel.Section" class="control-label"></label>
+                    <input asp-for="ClientModel.Section" class="form-control" />
+                    <span asp-validation-for="ClientModel.Section" class="text-danger"></span>
                 </div>
 
 
                 <div class="form-group col-3">
-                    <label asp-for="Room" class="control-label"></label>
-                    <input asp-for="Room" class="form-control" />
-                    <span asp-validation-for="Room" class="text-danger"></span>
+                    <label asp-for="ClientModel.Room" class="control-label"></label>
+                    <input asp-for="ClientModel.Room" class="form-control" />
+                    <span asp-validation-for="ClientModel.Room" class="text-danger"></span>
                 </div>
 
             </div>
-            @foreach (var item in loanItems)
-                <div class="form-group col-md-6">
-                    <label asp-for="ItemName" class="control-label"> </label>
-                    <input asp-for="AmountSocks" class="form-control " />
-                </div>
+            <div class="row">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="form-group col-md-3">
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                        <input asp-for="ClientItemModel.ItemCount" class="form-control" />
+                        <span asp-validation-for="ClientItemModel.ItemCount"></span>
+                    </div>
+                }
+            </div>
+           
             @*<div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="AmountSocks" class="control-label"> </label>
@@ -100,9 +106,9 @@
         </div>*@
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label asp-for="UpdatedBy" class="control-label"></label>
-                    <input asp-for="UpdatedBy" class="form-control" />
-                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+                    <label asp-for="ClientModel.UpdatedBy" class="control-label"></label>
+                    <input asp-for="ClientModel.UpdatedBy" class="form-control" />
+                    <span asp-validation-for="ClientModel.UpdatedBy" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">

@@ -51,7 +51,7 @@ namespace SkalEF.Models
         [DisplayName("Ansvarig Personal")]
         public string UpdatedBy { get; set; }
 
-        public List<ItemModel> Items { get; set; }
+        public List<ClientItemModel> Items { get; set; }
 
         public ClientModel()
         {
@@ -70,7 +70,7 @@ namespace SkalEF.Models
             DossNr = client.DossNr;
             ImgName = client.ImgName;
             UpdatedBy = client.UpdatedBy;
-            Items = client.ClientItems?.Select(x => new ItemModel(x)).ToList();
+            Items = client.ClientItems?.Select(x => new ClientItemModel(x)).ToList();
         }
 
 

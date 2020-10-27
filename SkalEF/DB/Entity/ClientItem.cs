@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkalEF.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,5 +17,19 @@ namespace SkalEF.DB.Entity
         public int ItemCount { get; set; }
         public DateTime ItemOutDate { get; set; }
         public DateTime? ItemInDate { get; set; }
+
+        public ClientItem()
+        {
+
+        }
+
+        public ClientItem(ClientItemModel model)
+        {
+            Item.ItemName = model.ItemName;
+            ItemCount = model.ItemCount;
+            ItemInDate = model.ItemInDate;
+            ItemOutDate = model.ItemOutDate;
+        }
     }
+
 }
