@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SkalEF.DB.Entity;
@@ -20,31 +19,6 @@ namespace SkalEF.Models
         {
             ItemID = item.ItemID;
             ItemName = item.ItemName;
-        }
-    }
-
-    public class ClientItemModel
-    {
-        public int? ClientID { get; set; }
-        public int ItemID { get; set; }
-        public string ItemName { get; set; }
-        public int ItemCount { get; set; }
-        public DateTime ItemOutDate { get; set; }
-        public DateTime? ItemInDate { get; set; }
-
-        public ClientItemModel()
-        {
-                
-        }
-
-        public ClientItemModel(ClientItem item)
-        {
-            ClientID = item.ClientID;
-            ItemID = item.ItemID;    
-            ItemName = item.Item.ItemName;
-            ItemCount = item.ItemCount;
-            ItemOutDate = item.ItemOutDate;
-            ItemInDate = item.ItemInDate;
         }
     }
 }

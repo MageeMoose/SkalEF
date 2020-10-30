@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Lists\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Lists\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Lists\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Lists\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Models\NewFile.txt" />
   </ItemGroup>
 
@@ -19,11 +30,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Lists\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

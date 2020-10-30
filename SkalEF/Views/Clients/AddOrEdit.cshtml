@@ -60,22 +60,26 @@
                 </div>
             </div>
             <div class="row">
+                @{ var i = 0;}
                 @foreach (var item in Model.ClientModel.Items)
                 {
                     <div class="form-group col-md-3">
                         @Html.DisplayFor(x => item.ItemName)
-                        <input asp-for="@item.ItemCount" class="form-control" />
-                        <span asp-validation-for="@item.ItemCount"></span>
+                        <input name="ClientModel.Items[@i].ItemCount" asp-for="@item.ItemCount" class="form-control" />
+                        <input type="hidden" name="ClientModel.Items[@i].ItemID" asp-for="@item.ItemID" class="form-control" />
+                        <input type="hidden" name="ClientModel.Items[@i].ItemName" asp-for="@item.ItemName" class="form-control" />
+                        <input type="hidden" name="ClientModel.Items[@i].ItemOutDate" asp-for="@DateTime.Now" class="form-control" />
                     </div>
+                    i++;
                 }
             </div>
-            @*<div class="form-row">
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="ClientModel.UpdatedBy" class="control-label"></label>
                     <input asp-for="ClientModel.UpdatedBy" class="form-control" />
                     <span asp-validation-for="ClientModel.UpdatedBy" class="text-danger"></span>
                 </div>
-            </div>*@
+            </div>
             <div class="form-group">
                 <input type="submit" value="Registrera" class="btn btn-dark" />
             </div>

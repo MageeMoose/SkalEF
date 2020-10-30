@@ -13,6 +13,5 @@ namespace SkalEF.Models
     public class AddEditViewModel
     {
         public ClientModel ClientModel { get; set; }
-        public List<ItemModel> Items { get; set; }
     }
 }

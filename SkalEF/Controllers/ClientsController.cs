@@ -53,14 +53,13 @@ namespace SkalEF.Controllers
             {
                 var items = await _clientDb.GetAllItems();
 
-                model = new ClientModel
+                model = new ClientModel();
+
+                model.Items = items.Select(x => new ClientItemModel
                 {
-                    Items = items.Select(x => new ClientItemModel
-                    {
-                        ItemID = x.ItemID,
-                        ItemName = x.ItemName
-                    }).ToList()
-                };
+                    ItemID = x.ItemID,
+                    ItemName = x.ItemName
+                }).ToList();
             }
             else
             {
@@ -82,7 +81,7 @@ namespace SkalEF.Controllers
             var client = vm.ClientModel;
 
             if (ModelState.IsValid)
-            { 
+            {
                 //check if the user is updating or adding a client
                 //Client exist
                 if (client.ClientID != null)
