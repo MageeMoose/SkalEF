@@ -57,13 +57,12 @@ namespace SkalEF.DB
             await _context.SaveChangesAsync();
         }
 
+       
         public async Task AddClient(ClientModel model)
         {
             var client = new Client(model);
-
             client.CreatedOn = DateTime.Now;
-
-           
+             
             await _context.Clients.AddAsync(client);
 
             await _context.SaveChangesAsync();
@@ -110,6 +109,7 @@ namespace SkalEF.DB
         public async Task<List<ItemModel>> GetAllItems()
         {
             return await _context.Items.Select(x => new ItemModel(x)).ToListAsync();
+        
         }
 
         public async Task<List<ClientModel>> GetAllClients()

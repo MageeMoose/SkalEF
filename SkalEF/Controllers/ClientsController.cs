@@ -16,7 +16,7 @@ namespace SkalEF.Controllers
     {
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ClientDB _clientDb;
-        
+
 
         public ClientsController(IWebHostEnvironment hostEnvironment, ClientDB clientDB)
         {
@@ -47,21 +47,42 @@ namespace SkalEF.Controllers
         // GET: Clients/Create
         public async Task<IActionResult> AddOrEdit(int? id)
         {
+            ClientModel model = null;
+
+            if (id == null)
+            {
+                var items = await _clientDb.GetAllItems();
+
+                model = new ClientModel
+                {
+                    Items = items.Select(x => new ClientItemModel
+                    {
+                        ItemID = x.ItemID,
+                        ItemName = x.ItemName
+                    }).ToList()
+                };
+            }
+            else
+            {
+                model = await _clientDb.GetClient(id.Value);
+            }
+
             return View(new AddEditViewModel
             {
-                ClientModel = id == null ? new ClientModel() : await _clientDb.GetClient(id.Value),
-                Items = await _clientDb.GetAllItems()
+                ClientModel = model
             });
         }
 
         // POST: Clients/Create
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(ClientModel client)
+        public async Task<IActionResult> AddOrEdit(AddEditViewModel vm)
         {
+            var client = vm.ClientModel;
+
             if (ModelState.IsValid)
-            {
+            { 
                 //check if the user is updating or adding a client
                 //Client exist
                 if (client.ClientID != null)
@@ -110,13 +131,10 @@ namespace SkalEF.Controllers
                     
                     return RedirectToAction(nameof(Index));
                 } 
+           
             }
-            
-            return View(new AddEditViewModel
-            {
-                ClientModel = client,
-                Items = await _clientDb.GetAllItems()
-            });
+
+            return View(vm);
         }
 
         // GET: Clients/Delete/5

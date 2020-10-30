@@ -28,6 +28,7 @@ namespace SkalEF.DB
             modelBuilder.Entity<ClientItem>().HasKey(x => new {x.ClientID, x.ItemID});
             modelBuilder.Entity<ClientItem>().HasOne(x => x.Client).WithMany(x => x.ClientItems);
            
+            
             base.OnModelCreating(modelBuilder);
         }
     }
