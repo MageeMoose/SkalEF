@@ -21,14 +21,12 @@ namespace SkalEF.DB
 
         }
 
- 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClientItem>().HasKey(x => new {x.ClientID, x.ItemID});
-            modelBuilder.Entity<ClientItem>().HasOne(x => x.Client).WithMany(x => x.ClientItems);
-           
-            
+            modelBuilder.Entity<ClientItem>().HasOne(c => c.Client).WithMany(ci => ci.ClientItems).HasForeignKey(c => c.ClientID);
+            modelBuilder.Entity<ClientItem>().HasOne(t => t.Item).WithMany(ci => ci.ClientItems).HasForeignKey(t => t.ItemID);
+
             base.OnModelCreating(modelBuilder);
         }
     }

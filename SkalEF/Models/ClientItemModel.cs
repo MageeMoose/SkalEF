@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SkalEF.DB.Entity;
 
 namespace SkalEF.Models
@@ -11,6 +12,7 @@ namespace SkalEF.Models
         public int ItemCount { get; set; }
         public DateTime ItemOutDate { get; set; }
         public DateTime? ItemInDate { get; set; }
+        
 
         public ClientItemModel()
         {
@@ -18,9 +20,7 @@ namespace SkalEF.Models
         }
 
         public ClientItemModel(ClientItem item)
-        {
-            ClientID = item.ClientID;
-            ItemID = item.ItemID;    
+        {  
             ItemName = item.Item.ItemName;
             ItemCount = item.ItemCount;
             ItemOutDate = item.ItemOutDate;

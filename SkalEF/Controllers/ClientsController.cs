@@ -100,6 +100,7 @@ namespace SkalEF.Controllers
                         // If the user has picked an image, create a uniqe filename and add the name to the DB
                         //Save profileimage to wwwRoot/img
                         await SaveImageToDB(client);
+                        
                         //Update client
                         await _clientDb.EditClient(client); 
                     }
@@ -107,7 +108,6 @@ namespace SkalEF.Controllers
                     {
                         // If the client already has an image
                         // Set the date when the client recived Items after the initial meeting
-
 
                         await _clientDb.EditClient(client);
 
@@ -125,9 +125,9 @@ namespace SkalEF.Controllers
                         await SaveImageToDB(client);
                     }
                     // Set the date when the client recived Items
-
+                   
                     await _clientDb.AddClient(client);
-                    
+
                     return RedirectToAction(nameof(Index));
                 } 
            

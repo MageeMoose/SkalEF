@@ -63,13 +63,14 @@
                 @{ var i = 0;}
                 @foreach (var item in Model.ClientModel.Items)
                 {
-                    <div class="form-group col-md-3">
-                        @Html.DisplayFor(x => item.ItemName)
-                        <input name="ClientModel.Items[@i].ItemCount" asp-for="@item.ItemCount" class="form-control" />
-                        <input type="hidden" name="ClientModel.Items[@i].ItemID" asp-for="@item.ItemID" class="form-control" />
-                        <input type="hidden" name="ClientModel.Items[@i].ItemName" asp-for="@item.ItemName" class="form-control" />
-                        <input type="hidden" name="ClientModel.Items[@i].ItemOutDate" asp-for="@DateTime.Now" class="form-control" />
-                    </div>
+                <div class="form-group col-md-3">
+                    @Html.DisplayFor(x => item.ItemName)
+                    <input name="ClientModel.Items[@i].ItemCount" asp-for="@item.ItemCount" class="form-control" />
+                    <input type="hidden" name="ClientModel.Items[@i].ItemID" asp-for="@item.ItemID" class="form-control" />
+                    <input type="hidden" name="ClientModel.Items[@i].ItemName" asp-for="@item.ItemName" class="form-control" />
+                    <input type="hidden" name="ClientModel.Items[@i].ItemOutDate" asp-for="@DateTime.Now" class="form-control" />
+                    
+                </div>
                     i++;
                 }
             </div>

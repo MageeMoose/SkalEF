@@ -51,7 +51,7 @@ namespace SkalEF.Models
         [DisplayName("Ansvarig Personal")]
         public string UpdatedBy { get; set; }
 
-        public List<ClientItemModel> Items { get; set; }
+        public ICollection<ClientItemModel> Items { get; set; }
 
         public ClientModel()
         {

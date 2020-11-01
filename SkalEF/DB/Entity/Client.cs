@@ -49,7 +49,7 @@ namespace SkalEF.DB.Entity
         public DateTime UpdatedOn{ get; set; }
         public DateTime CreatedOn { get; set; }
 
-        public List<ClientItem> ClientItems { get; set; }
+        public ICollection<ClientItem> ClientItems { get; set; }
 
         public Client() { }
 
@@ -65,7 +65,8 @@ namespace SkalEF.DB.Entity
             DossNr = model.DossNr;
             ImgName = model.ImgName;
             UpdatedBy = model.UpdatedBy;
-           
+            
+
         }
     }
 }

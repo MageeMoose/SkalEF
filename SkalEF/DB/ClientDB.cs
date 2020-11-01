@@ -50,21 +50,20 @@ namespace SkalEF.DB
         {
             var client = await _context.Clients.FirstOrDefaultAsync(x => x.ClientID == model.ClientID);
 
-           
-
             _context.Clients.Remove(client);
 
             await _context.SaveChangesAsync();
         }
 
+      
        
         public async Task AddClient(ClientModel model)
         {
             var client = new Client(model);
             client.CreatedOn = DateTime.Now;
-             
+            
             await _context.Clients.AddAsync(client);
-
+           
             await _context.SaveChangesAsync();
         }
 
