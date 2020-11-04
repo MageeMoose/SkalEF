@@ -30,6 +30,14 @@ namespace SkalEF.DB.Entity
             ItemInDate = model.ItemInDate;
             ItemOutDate = model.ItemOutDate;
         }
+
+        public ClientItem(ClientItemModel model, Item item)
+        {
+            ItemID = item.ItemID;
+            ItemCount = model.ItemCount;
+            ItemInDate = model.ItemInDate;
+            ItemOutDate = model.ItemOutDate;
+        }
     }
 
 }
