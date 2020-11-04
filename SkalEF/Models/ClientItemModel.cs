@@ -19,12 +19,20 @@ namespace SkalEF.Models
                 
         }
 
-        public ClientItemModel(ClientItem item)
+        public ClientItemModel(ClientItem clientItem)
         {  
-            ItemName = item.Item.ItemName;
-            ItemCount = item.ItemCount;
-            ItemOutDate = item.ItemOutDate;
-            ItemInDate = item.ItemInDate;
+            ItemName = clientItem.Item.ItemName;
+            ItemCount = clientItem.ItemCount;
+            ItemOutDate = clientItem.ItemOutDate;
+            ItemInDate = clientItem.ItemInDate;
+        }
+
+        public ClientItemModel(ClientItem clientItem, Item item)
+        {
+            ItemName = item.ItemName;
+            ItemCount = clientItem.ItemCount;
+            ItemOutDate = clientItem.ItemOutDate;
+            ItemInDate = clientItem.ItemInDate;
         }
     }
 }
