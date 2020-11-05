@@ -59,7 +59,9 @@ namespace SkalEF.DB
        
         public async Task AddClient(ClientModel model)
         {
-            var client = new Client(model);
+            var items = model.Items;
+            var client = new Client(model, items);
+            
             client.CreatedOn = DateTime.Now;
             
             await _context.Clients.AddAsync(client);

@@ -53,7 +53,21 @@ namespace SkalEF.DB.Entity
 
         public Client() { }
 
-        public Client(ClientModel model)
+        public Client(ClientModel model )
+        {
+            ClientID = model.ClientID;
+            Room = model.Room;
+            FirstName = model.FirstName;
+            LastName = model.LastName;
+            Lang = model.Lang;
+            Section = model.Section;
+            FoodChoice = model.FoodChoice;
+            DossNr = model.DossNr;
+            ImgName = model.ImgName;
+            UpdatedBy = model.UpdatedBy;  
+
+        }
+        public Client(ClientModel model, ICollection<ClientItemModel> clientItemModels)
         {
             ClientID = model.ClientID;
             Room = model.Room;
@@ -65,8 +79,8 @@ namespace SkalEF.DB.Entity
             DossNr = model.DossNr;
             ImgName = model.ImgName;
             UpdatedBy = model.UpdatedBy;
-            
-
+            ClientItems = clientItemModels.Select(x => new ClientItem(x)).ToList();
         }
+
     }
 }
