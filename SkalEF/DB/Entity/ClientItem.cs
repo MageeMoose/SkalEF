@@ -33,8 +33,7 @@ namespace SkalEF.DB.Entity
 
         public ClientItem(ClientItemModel model, Item item)
         {
-            ClientID = model.ClientID;
-            ItemID = item.ItemID;
+           
             ItemCount = model.ItemCount;
             ItemInDate = model.ItemInDate;
             ItemOutDate = model.ItemOutDate;
