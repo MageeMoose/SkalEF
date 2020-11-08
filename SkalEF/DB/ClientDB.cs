@@ -94,21 +94,16 @@ namespace SkalEF.DB
             // Get current client from DB
             var client = await _context.Clients.Include(x => x.ClientItems).FirstOrDefaultAsync(x => x.ClientId == model.ClientId);
 
-            // Create a new client using the models values
+            
+          // Create a new client using the models values
             // Set the new client ID to match the current ID
             var newClient = new Client(model) {ClientId = client.ClientId, UpdatedOn = DateTime.Now};
             
 
-
-            foreach (var item in client.ClientItems)
-            {
-                if(item.ItemCount < 1)
-                    _context.Entry(client.ClientItems).CurrentValues.SetValues(newClient);
-            }
-
             // Update the entity with the new values
             _context.Entry(client).CurrentValues.SetValues(newClient);
             
+            newClient.ClientItems = model.ClientItems.Select(x => new ClientItem(x.ClientId.Value, x.ItemId, x)).ToList();
             // Save the changes
             await _context.SaveChangesAsync();
         }
