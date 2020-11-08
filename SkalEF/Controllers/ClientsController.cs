@@ -40,10 +40,14 @@ namespace SkalEF.Controllers
 
             var client = await _clientDb.GetClient(id.Value);
 
+
             if (client == null)
                 return NotFound();
 
-            return View(client);
+            return View(new DetailsVewModel
+            {
+                ClientModel = client
+            });
         }
 
         // GET: Clients/Create

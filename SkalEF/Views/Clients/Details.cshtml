@@ -1,4 +1,4 @@
-﻿@model SkalEF.Models.ClientModel
+﻿@model SkalEF.Models.ViewModels.DetailsVewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -9,13 +9,13 @@
 <div>
     <div class="container">
         <div class="card" style="width:200px;">
-            <img class="card-img-top" src="@("~/img/"+Model.ImgName)" asp-append-version="true" style="width:100%;" />
+            <img class="card-img-top" src="@("~/img/"+Model.ClientModel.ImgName)" asp-append-version="true" style="width:100%;" />
             <div class="card-body">
-                <h1>@Html.DisplayFor(model => model.Room)</h1>
-                    @Html.DisplayNameFor(model => model.LastName)
-                <h4>@Html.DisplayFor(model => model.LastName)</h4>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                <h5>@Html.DisplayFor(model => model.FirstName)</h5>
+                <h1>@Html.DisplayFor(model => model.ClientModel.Room)</h1>
+                    @Html.DisplayNameFor(model => model.ClientModel.LastName)
+                <h4>@Html.DisplayFor(model => model.ClientModel.LastName)</h4>
+                    @Html.DisplayNameFor(model => model.ClientModel.FirstName)
+                <h5>@Html.DisplayFor(model => model.ClientModel.FirstName)</h5>
             </div>
         </div>
     </div>
@@ -24,20 +24,20 @@
     <div class="container" style="margin:50px;">
         <div class="row">
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.DossNr)
-                <h5>@Html.DisplayFor(model => model.DossNr)</h5>
+                @Html.DisplayNameFor(model => model.ClientModel.DossNr)
+                <h5>@Html.DisplayFor(model => model.ClientModel.DossNr)</h5>
             </div>
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.Lang)
-                <h5>@Html.DisplayFor(model => model.Lang)</h5>
+                @Html.DisplayNameFor(model => model.ClientModel.Lang)
+                <h5>@Html.DisplayFor(model => model.ClientModel.Lang)</h5>
             </div>
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.Section)
-                <h5>@Html.DisplayFor(model => model.Section)</h5>
+                @Html.DisplayNameFor(model => model.ClientModel.Section)
+                <h5>@Html.DisplayFor(model => model.ClientModel.Section)</h5>
             </div>
             <div class="col-md-3">
-                @Html.DisplayNameFor(model => model.FoodChoice)
-                <h5>@Html.DisplayFor(model => model.FoodChoice)</h5>
+                @Html.DisplayNameFor(model => model.ClientModel.FoodChoice)
+                <h5>@Html.DisplayFor(model => model.ClientModel.FoodChoice)</h5>
             </div>
         </div>
 
@@ -50,17 +50,22 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th> Utlånat </th>
                             <th> Antal </th>
                             <th> Datum </th>
-                            <th> Ansvarig </th>
                         </tr>
                     </thead>
                     <tbody>
+                    @{ var i = 0;}
+                    @foreach (var item in Model.ClientModel.ClientItems)
+                    {
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>@Html.DisplayFor(x => item.ItemName)</td>
+                            <td>@Html.DisplayFor(x => item.ItemCount)</td>
+                            <td>@Html.DisplayFor(x => item.ItemOutDate)</td>
                         </tr>
+                        i++;
+                    }
                     </tbody>
                 </table>
             </div>
@@ -83,233 +88,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-2">
-
-            </div>
+            
         </div>
-        <div class="row">
-           
-            <div class="col-md-4 ">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-        <div class="row">
-           
-            <div class="col-md-4 ">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 ">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 ">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 ">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Antal </th>
-                            <th> Datum </th>
-                            <th> Ansvarig </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+   
         <div class="col-md-2">
-            <h3><span class="badge badge-secondary">Uppdaterad av: @Html.DisplayFor(model => model.UpdatedBy) den </span></h3>
+            <h3><span class="badge badge-secondary">Uppdaterad av: @Html.DisplayFor(model => model.ClientModel.UpdatedBy) den  </span></h3>
         </div>
     </div>
     
     <br />
 </div>
 <div>
-    <a class="btn btn-success" asp-action="AddOrEdit" asp-route-id="@Model.ClientId">Ändra</a> |
+    <a class="btn btn-success" asp-action="AddOrEdit" asp-route-id="@Model.ClientModel.ClientId">Ändra</a> |
     <a asp-action="Index">Tillbaka</a>
 </div>
