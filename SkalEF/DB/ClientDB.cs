@@ -107,7 +107,7 @@ namespace SkalEF.DB
         public async Task<ClientModel> GetClient(int id)
         {
             var client = await _context.Clients
-                .Include(x => x.ClientItems )
+                .Include(x => x.ClientItems)
                 .ThenInclude(x => x.Item)
                 .FirstOrDefaultAsync(x => x.ClientId == id);
             

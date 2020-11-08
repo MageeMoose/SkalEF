@@ -22,8 +22,8 @@ namespace SkalEF.Models
 
         public ClientItemModel(ClientItem clientItem)
         {
-            ClientId = clientItem.Client.ClientId;
-            ItemId = clientItem.Item.ItemId;
+            ClientId = clientItem.ClientId;
+            ItemId = clientItem.ItemId;
             ItemName = clientItem.Item.ItemName;
             ItemCount = clientItem.ItemCount;
             ItemOutDate = clientItem.ItemOutDate;
