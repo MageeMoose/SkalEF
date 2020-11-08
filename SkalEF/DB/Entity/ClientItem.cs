@@ -9,31 +9,22 @@ namespace SkalEF.DB.Entity
     [Table("ClientItem")]
     public class ClientItem
     {
-        [Key]
-        public int? ClientID { get; set; }
-        [Key]
-        public int? ItemID { get; set; }
+        public int ClientId { get; set; }
         public Client Client { get; set; }
+
+        public int ItemId { get; set; }
         public Item Item { get; set; }
+
         public int ItemCount { get; set; }
         public DateTime ItemOutDate { get; set; }
         public DateTime? ItemInDate { get; set; }
        
-        public ClientItem()
-        {
+        public ClientItem() { }
 
-        }
-
-        public ClientItem(ClientItemModel model)
+        public ClientItem(int clientId, int itemId, ClientItemModel model)
         {
-            ItemCount = model.ItemCount;
-            ItemInDate = model.ItemInDate;
-            ItemOutDate = model.ItemOutDate;
-        }
-
-        public ClientItem(ClientItemModel model, Item item)
-        {
-           
+            ClientId = clientId;
+            ItemId = itemId;
             ItemCount = model.ItemCount;
             ItemInDate = model.ItemInDate;
             ItemOutDate = model.ItemOutDate;

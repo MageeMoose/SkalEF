@@ -7,7 +7,7 @@ namespace SkalEF.Models
 {
     public class ItemModel
     {
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
         public string ItemName { get; set; }
 
         public ItemModel()
@@ -17,7 +17,7 @@ namespace SkalEF.Models
 
         public ItemModel(Item item)
         {
-            ItemID = item.ItemID;
+            ItemId = item.ItemId;
             ItemName = item.ItemName;
         }
     }

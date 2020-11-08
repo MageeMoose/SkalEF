@@ -1,6 +1,4 @@
-using System;
-
-namespace SkalEF.Models
+namespace SkalEF.Models.ViewModels
 {
     public class ErrorViewModel
     {

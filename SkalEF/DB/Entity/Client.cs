@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using SkalEF.Enums;
 
 namespace SkalEF.DB.Entity
 {
     [Table("Client")]
     public class Client
     {
-        [Key]
-        public int? ClientID { get; set; }
+        public int ClientId { get; set; }
         
         [NotNull]
         [Column(TypeName = "nvarchar(8)")]
@@ -41,7 +41,7 @@ namespace SkalEF.DB.Entity
         public string DossNr { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
-        public string? ImgName { get; set; }
+        public string ImgName { get; set; }
        
         [NotNull]
         public string UpdatedBy { get; set; }
@@ -49,27 +49,12 @@ namespace SkalEF.DB.Entity
         public DateTime UpdatedOn{ get; set; }
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<ClientItem> ClientItems { get; set; }
+        public List<ClientItem> ClientItems { get; set; }
 
         public Client() { }
 
-        public Client(ClientModel model )
+        public Client(ClientModel model)
         {
-            ClientID = model.ClientID;
-            Room = model.Room;
-            FirstName = model.FirstName;
-            LastName = model.LastName;
-            Lang = model.Lang;
-            Section = model.Section;
-            FoodChoice = model.FoodChoice;
-            DossNr = model.DossNr;
-            ImgName = model.ImgName;
-            UpdatedBy = model.UpdatedBy;  
-
-        }
-        public Client(ClientModel model, ICollection<ClientItemModel> clientItemModels)
-        {
-            ClientID = model.ClientID;
             Room = model.Room;
             FirstName = model.FirstName;
             LastName = model.LastName;
@@ -79,8 +64,6 @@ namespace SkalEF.DB.Entity
             DossNr = model.DossNr;
             ImgName = model.ImgName;
             UpdatedBy = model.UpdatedBy;
-            ClientItems = clientItemModels.Select(x => new ClientItem(x)).ToList();
         }
-
     }
 }

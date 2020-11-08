@@ -31,7 +31,7 @@ namespace SkalEF
             {
                 opitions.UseSqlServer(Configuration.GetConnectionString("DevConnection"));
             });
-            services.AddTransient<ClientDB>();
+            services.AddTransient<ClientDb>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +58,7 @@ namespace SkalEF
                     pattern: "{controller=Clients}/{action=Index}/{id?}");
             }); 
             
-            services.GetService<ClientDB>().Create().GetAwaiter().GetResult();
+            services.GetService<ClientDb>().Create().GetAwaiter().GetResult();
         }
     }
 }

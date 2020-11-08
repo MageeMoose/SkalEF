@@ -12,7 +12,7 @@ namespace SkalEF.Models
 {
     public class ClientModel
     {
-        public int? ClientID { get; set; }
+        public int? ClientId { get; set; }
        
         [Required]
         [DisplayName("Rum")]
@@ -51,16 +51,13 @@ namespace SkalEF.Models
         [DisplayName("Ansvarig Personal")]
         public string UpdatedBy { get; set; }
 
-        public ICollection<ClientItemModel> Items { get; set; }
+        public List<ClientItemModel> ClientItems { get; set; }
 
-        public ClientModel()
-        {
-                
-        }
+        public ClientModel() { }
 
         public ClientModel(Client client)
         {
-            ClientID = client.ClientID;
+            ClientId = client.ClientId;
             Room = client.Room;
             FirstName = client.FirstName;
             LastName = client.LastName;
@@ -70,10 +67,7 @@ namespace SkalEF.Models
             DossNr = client.DossNr;
             ImgName = client.ImgName;
             UpdatedBy = client.UpdatedBy;
-            Items = client.ClientItems?.Select(x => new ClientItemModel(x)).ToList();
+            ClientItems = client.ClientItems?.Select(x => new ClientItemModel(x)).ToList();
         }
-
-
-
     }
 }

@@ -13,7 +13,6 @@ namespace SkalEF.DB
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<ClientItem> ClientItems { get; set; }
 
         
         public ClientContext(DbContextOptions<ClientContext>options):base(options)
@@ -23,9 +22,18 @@ namespace SkalEF.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ClientItem>().HasKey(x => new {x.ClientID, x.ItemID});
-            modelBuilder.Entity<ClientItem>().HasOne(c => c.Client).WithMany(ci => ci.ClientItems).HasForeignKey(c => c.ClientID);
-            modelBuilder.Entity<ClientItem>().HasOne(t => t.Item).WithMany(ci => ci.ClientItems).HasForeignKey(t => t.ItemID);
+            modelBuilder.Entity<ClientItem>()
+                .HasKey(x => new { x.ClientId, x.ItemId });
+
+            modelBuilder.Entity<ClientItem>()
+                .HasOne<Client>()
+                .WithMany(x => x.ClientItems)
+                .HasForeignKey(x => x.ClientId);
+
+            modelBuilder.Entity<ClientItem>()
+                .HasOne<Item>()
+                .WithMany(x => x.ClientItems)
+                .HasForeignKey(x => x.ItemId);
 
             base.OnModelCreating(modelBuilder);
         }

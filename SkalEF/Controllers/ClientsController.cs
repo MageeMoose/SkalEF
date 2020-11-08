@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,16 +10,17 @@ using Newtonsoft.Json.Linq;
 using SkalEF.DB;
 using SkalEF.DB.Entity;
 using SkalEF.Models;
+using SkalEF.Models.ViewModels;
 
 namespace SkalEF.Controllers
 {
     public class ClientsController : Controller
     {
         private readonly IWebHostEnvironment _hostEnvironment;
-        private readonly ClientDB _clientDb;
+        private readonly ClientDb _clientDb;
 
 
-        public ClientsController(IWebHostEnvironment hostEnvironment, ClientDB clientDB)
+        public ClientsController(IWebHostEnvironment hostEnvironment, ClientDb clientDB)
         {
             _hostEnvironment = hostEnvironment;
             _clientDb = clientDB;
@@ -47,24 +49,19 @@ namespace SkalEF.Controllers
         // GET: Clients/Create
         public async Task<IActionResult> AddOrEdit(int? id)
         {
-            ClientModel model = null;
+            var model = id == null
+                ? new ClientModel()
+                : await _clientDb.GetClient(id.Value);
+            
+            var items = await _clientDb.GetAllItems();
 
-            if (id == null)
+            var clientItems = new List<ClientItemModel>();
+            foreach (var item in items)
             {
-                var items = await _clientDb.GetAllItems();
-
-                model = new ClientModel();
-
-                model.Items = items.Select(x => new ClientItemModel
-                {
-                    ItemID = x.ItemID,
-                    ItemName = x.ItemName
-                }).ToList();
+                clientItems.Add(model.ClientItems?.FirstOrDefault(x => x.ItemId == item.ItemId) ?? new ClientItemModel(item));
             }
-            else
-            {
-                model = await _clientDb.GetClient(id.Value);
-            }
+
+            model.ClientItems = clientItems;
 
             return View(new AddEditViewModel
             {
@@ -84,7 +81,7 @@ namespace SkalEF.Controllers
             {
                 //check if the user is updating or adding a client
                 //Client exist
-                if (client.ClientID != null)
+                if (client.ClientId != null)
                 {
                   // Checking if the user has uploaded an image or not 
                     //If no image has been picked and ther is no priveous image, use the default image 
@@ -107,7 +104,7 @@ namespace SkalEF.Controllers
                     else
                     {
                         // If the client already has an image
-                        // Set the date when the client recived Items after the initial meeting
+                        // Set the date when the client recived ClientItems after the initial meeting
 
                         await _clientDb.EditClient(client);
 
@@ -124,7 +121,7 @@ namespace SkalEF.Controllers
                     {
                         await SaveImageToDB(client);
                     }
-                    // Set the date when the client recived Items
+                    // Set the date when the client recived ClientItems
                    
                     await _clientDb.AddClient(client);
 
