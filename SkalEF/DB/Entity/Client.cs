@@ -64,6 +64,7 @@ namespace SkalEF.DB.Entity
             DossNr = model.DossNr;
             ImgName = model.ImgName;
             UpdatedBy = model.UpdatedBy;
+            
         }
     }
 }
