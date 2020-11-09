@@ -9,6 +9,7 @@ using SkalEF.DB.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace SkalEF.DB
 {
@@ -61,13 +62,13 @@ namespace SkalEF.DB
             await _context.Clients.AddAsync(client);
             await _context.SaveChangesAsync();
 
-            await _context.AddRangeAsync(await AddClientItems(client, model.ClientItems));
+            await _context.AddRangeAsync(await AddRentedItems(client, model.ClientItems));
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ClientItem>> AddClientItems(Client client, List<ClientItemModel> models)
+        public async Task<List<RentedItem>> AddRentedItems(Client client, List<ClientItemModel> models)
         {
-            var clientItems = new List<ClientItem>();
+            var clientItems = new List<RentedItem>();
             var items = await _context.Items.ToListAsync();
 
             foreach (var clientItemModel in models.Where(x => x.ItemCount > 0))
@@ -77,7 +78,8 @@ namespace SkalEF.DB
                 if (item == null)
                     throw new ArgumentException($"The is no item {clientItemModel.ItemId}");
 
-                clientItems.Add(new ClientItem(client.ClientId, item.ItemId, clientItemModel));
+                for (var i = 0; i < clientItemModel.ItemCount; i++) 
+                    clientItems.Add(new RentedItem(client, item));
             }
 
             return clientItems;
@@ -92,32 +94,52 @@ namespace SkalEF.DB
             var items = await _context.Items.ToListAsync();
 
             // Get current client from DB
-            var client = await _context.Clients.Include(x => x.ClientItems).FirstOrDefaultAsync(x => x.ClientId == model.ClientId);
-            var modelItems = model.ClientItems.ToList();
-            var clientItems = client.ClientItems.ToList();
+            var client = await _context.Clients
+                .Include(x => x.RentedItems)
+                .FirstOrDefaultAsync(x => x.ClientId == model.ClientId);
+
+            foreach (var clientItem in model.ClientItems)
+            {
+                var rentedCount = client.RentedItems.Count(x => !x.ItemInDate.HasValue && x.Item.ItemId == clientItem.ItemId);
+
+                if (rentedCount < clientItem.ItemCount)
+                {
+                    for (var i = 0; i < clientItem.ItemCount - rentedCount; i++)
+                        client.RentedItems.Add(new RentedItem(client, items.FirstOrDefault(x => x.ItemId == clientItem.ItemId)));
+                }
+                else if (rentedCount > clientItem.ItemCount)
+                {
+                    for (var i = 0; i < rentedCount - clientItem.ItemCount; i++)
+                    {
+                        var rentedItem = client.RentedItems.First(x => x.Item.ItemId == clientItem.ItemId && !x.ItemInDate.HasValue);
+                        rentedItem.ItemInDate = DateTime.Now;
+                    }
+                }
+            }
 
             // Create a new client using the models values
             // Set the new client ID to match the current ID
-            var newClient = new Client(model) {ClientId = client.ClientId, UpdatedOn = DateTime.Now};
-            
+            var newClient = new Client(model) { ClientId = client.ClientId, UpdatedOn = DateTime.Now };          
 
             // Update the entity with the new values
-            _context.Entry(client).CurrentValues.SetValues(newClient);
-            
+            _context.Entry(client).CurrentValues.SetValues(newClient);            
             
             // Save the changes
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ClientModel> GetClient(int id)
+        public async Task<ClientModel> GetClient(int id, bool allRentedItems = false)
         {
             var client = await _context.Clients
-                .Include(x => x.ClientItems)
+                .Include(x => x.RentedItems)
                 .ThenInclude(x => x.Item)
                 .FirstOrDefaultAsync(x => x.ClientId == id);
             
             if (client == null)
                 return null;
+
+            if (!allRentedItems)
+                client.RentedItems = client.RentedItems.Where(x => !x.ItemInDate.HasValue).ToList();
 
             return new ClientModel(client);
         }

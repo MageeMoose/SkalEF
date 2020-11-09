@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SkalEF.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IntitalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,42 +44,48 @@ namespace SkalEF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClientItem",
+                name: "RentedItem",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(nullable: false),
-                    ItemId = table.Column<int>(nullable: false),
-                    ItemCount = table.Column<int>(nullable: false),
+                    RentedItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(nullable: true),
+                    ItemId = table.Column<int>(nullable: true),
                     ItemOutDate = table.Column<DateTime>(nullable: false),
                     ItemInDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClientItem", x => new { x.ClientId, x.ItemId });
+                    table.PrimaryKey("PK_RentedItem", x => x.RentedItemId);
                     table.ForeignKey(
-                        name: "FK_ClientItem_Client_ClientId",
+                        name: "FK_RentedItem_Client_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Client",
                         principalColumn: "ClientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ClientItem_Item_ItemId",
+                        name: "FK_RentedItem_Item_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Item",
                         principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientItem_ItemId",
-                table: "ClientItem",
+                name: "IX_RentedItem_ClientId",
+                table: "RentedItem",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentedItem_ItemId",
+                table: "RentedItem",
                 column: "ItemId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ClientItem");
+                name: "RentedItem");
 
             migrationBuilder.DropTable(
                 name: "Client");

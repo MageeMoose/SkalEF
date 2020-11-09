@@ -67,7 +67,10 @@ namespace SkalEF.Models
             DossNr = client.DossNr;
             ImgName = client.ImgName;
             UpdatedBy = client.UpdatedBy;
-            ClientItems = client.ClientItems?.Select(x => new ClientItemModel(x)).ToList();
+            ClientItems = client.RentedItems?
+                .GroupBy(x => x.Item.ItemId)
+                .Select(x => new ClientItemModel(x.ToList()))
+                .ToList();
         }
     }
 }

@@ -9,7 +9,5 @@ namespace SkalEF.DB.Entity
     {
         public int ItemId { get; set; }
         public string ItemName { get; set; }
-
-        public ICollection<ClientItem> ClientItems { get; set; }
     }
 }

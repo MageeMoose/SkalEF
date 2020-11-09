@@ -6,28 +6,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkalEF.DB.Entity
 {
-    [Table("ClientItem")]
-    public class ClientItem
+    [Table("RentedItem")]
+    public class RentedItem
     {
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
-        public int ItemId { get; set; }
-        public Item Item { get; set; }
+        [Key]
+        public int RentedItemId { get; set; }
 
-        public int ItemCount { get; set; }
+        public Client Client { get; set; }
+        public Item Item { get; set; }
         public DateTime ItemOutDate { get; set; }
         public DateTime? ItemInDate { get; set; }
-       
-        public ClientItem() { }
 
-        public ClientItem(int clientId, int itemId, ClientItemModel model)
+        public RentedItem() { }
+
+        public RentedItem(Client client, Item item)
         {
-            ClientId = clientId;
-            ItemId = itemId;
-            ItemCount = model.ItemCount;
-            ItemInDate = model.ItemInDate;
-            ItemOutDate = model.ItemOutDate;
+            Client = client;
+            Item = item;
+            ItemOutDate = DateTime.Now;
         }
     }
-
 }

@@ -12,6 +12,7 @@ namespace SkalEF.DB.Entity
     [Table("Client")]
     public class Client
     {
+        [Key]
         public int ClientId { get; set; }
         
         [NotNull]
@@ -49,7 +50,7 @@ namespace SkalEF.DB.Entity
         public DateTime UpdatedOn{ get; set; }
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<ClientItem> ClientItems { get; set; }
+        public ICollection<RentedItem> RentedItems { get; set; }
 
         public Client() { }
 

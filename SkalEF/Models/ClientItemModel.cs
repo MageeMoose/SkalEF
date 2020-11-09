@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SkalEF.DB.Entity;
 
 namespace SkalEF.Models
@@ -9,8 +11,6 @@ namespace SkalEF.Models
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public int ItemCount { get; set; }
-        public DateTime ItemOutDate { get; set; }
-        public DateTime? ItemInDate { get; set; }
 
         public ClientItemModel() { }
 
@@ -20,14 +20,17 @@ namespace SkalEF.Models
             ItemName = item.ItemName;
         }
 
-        public ClientItemModel(ClientItem clientItem)
+        public ClientItemModel(IReadOnlyCollection<RentedItem> rentedItems)
         {
-            ClientId = clientItem.Client.ClientId;
-            ItemId = clientItem.Item.ItemId;
-            ItemName = clientItem.Item.ItemName;
-            ItemCount = clientItem.ItemCount;
-            ItemOutDate = clientItem.ItemOutDate;
-            ItemInDate = clientItem.ItemInDate;
+            var first = rentedItems.FirstOrDefault();
+
+            if (first == null)
+                return;
+            
+            ClientId = first.Client.ClientId;
+            ItemId = first.Item.ItemId;
+            ItemName = first.Item.ItemName;
+            ItemCount = rentedItems.Count;
         }
     }
 }

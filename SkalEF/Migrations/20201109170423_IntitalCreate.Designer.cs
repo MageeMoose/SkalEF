@@ -10,8 +10,8 @@ using SkalEF.DB;
 namespace SkalEF.Migrations
 {
     [DbContext(typeof(ClientContext))]
-    [Migration("20201108130823_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201109170423_IntitalCreate")]
+    partial class IntitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,30 +66,6 @@ namespace SkalEF.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("SkalEF.DB.Entity.ClientItem", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ItemInDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ItemOutDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ClientId", "ItemId");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("ClientItem");
-                });
-
             modelBuilder.Entity("SkalEF.DB.Entity.Item", b =>
                 {
                     b.Property<int>("ItemId")
@@ -105,19 +81,43 @@ namespace SkalEF.Migrations
                     b.ToTable("Item");
                 });
 
-            modelBuilder.Entity("SkalEF.DB.Entity.ClientItem", b =>
+            modelBuilder.Entity("SkalEF.DB.Entity.RentedItem", b =>
+                {
+                    b.Property<int>("RentedItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ItemInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ItemOutDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("RentedItemId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("RentedItem");
+                });
+
+            modelBuilder.Entity("SkalEF.DB.Entity.RentedItem", b =>
                 {
                     b.HasOne("SkalEF.DB.Entity.Client", "Client")
-                        .WithMany("ClientItems")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("RentedItems")
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("SkalEF.DB.Entity.Item", "Item")
-                        .WithMany("ClientItems")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ItemId");
                 });
 #pragma warning restore 612, 618
         }
