@@ -66,10 +66,11 @@ namespace SkalEF.Controllers
             }
 
             model.ClientItems = clientItems;
-
+            model.UpdatedBy = null;
             return View(new AddEditViewModel
             {
                 ClientModel = model
+                
             });
         }
 

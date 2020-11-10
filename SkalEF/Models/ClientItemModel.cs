@@ -11,7 +11,8 @@ namespace SkalEF.Models
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public int ItemCount { get; set; }
-
+        public DateTime ItemOutDate { get; set; }
+        public DateTime? ItemInDate { get; set; }
         public ClientItemModel() { }
 
         public ClientItemModel(ItemModel item)
@@ -31,6 +32,8 @@ namespace SkalEF.Models
             ItemId = first.Item.ItemId;
             ItemName = first.Item.ItemName;
             ItemCount = rentedItems.Count;
+            ItemInDate = first.ItemInDate;
+            ItemOutDate = first.ItemOutDate;
         }
     }
 }
